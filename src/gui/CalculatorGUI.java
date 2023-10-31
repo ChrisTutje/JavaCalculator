@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class CalculatorGUI {
     private JFrame frame;
@@ -21,6 +22,7 @@ public class CalculatorGUI {
     private JButton clearButton;
     private JButton decimalButton;
     private JButton negativeButton;
+    private JButton helpButton;
 
     private double num1 = 0;
     private String operator = "";
@@ -67,13 +69,15 @@ public class CalculatorGUI {
         decimalButton.setFont(new Font("Arial", Font.PLAIN, 24));
         negativeButton = new JButton("(-)");
         negativeButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        helpButton = new JButton("?");
+        helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
         buttonPanel.add(blankButton);
         buttonPanel.add(blankButton1);
-        buttonPanel.add(blankButton2);
+        buttonPanel.add(helpButton);
         buttonPanel.add(clearButton); //C
         buttonPanel.add(operationButtons[8]); // =
 
@@ -138,6 +142,19 @@ public class CalculatorGUI {
                     double negatedNumber = Calculator.negative(currentNumber);
                     inputField.setText(String.valueOf(negatedNumber));
                 }
+            }
+        });
+        
+        helpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String instructions = "Welcome to the Calculator!\n"
+                        + "Use the number buttons to input numbers.\n"
+                        + "Use the operation buttons to perform calculations.\n"
+                        + "You can use the decimal (.) button for decimal numbers.\n"
+                        + "The negative (-) button negates the current number.\n"
+                        + "Click the equals (=) button to get the result.\n"
+                        + "Enjoy calculating!";
+                JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
