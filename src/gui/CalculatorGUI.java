@@ -4,13 +4,17 @@
  * Oct 30, 2023
  */
 package gui;
-
 import model.Calculator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import javax.swing.JOptionPane;
 
 public class CalculatorGUI {
     private JFrame frame;
@@ -19,6 +23,9 @@ public class CalculatorGUI {
     private JButton[] operationButtons;
     private JButton equalsButton;
     private JButton clearButton;
+    private JButton decimalButton;
+    private JButton negativeButton;
+    private JButton helpButton;
 
     private double num1 = 0;
     private String operator = "";
@@ -41,26 +48,41 @@ public class CalculatorGUI {
             numberButtons[i].setFont(new Font("Arial", Font.PLAIN, 24));
         }
 
-        operationButtons = new JButton[9];  // Adjust the array size to accommodate new operations
+        operationButtons = new JButton[9];  // array size of operation buttons
         operationButtons[0] = new JButton("+");
         operationButtons[1] = new JButton("-");
         operationButtons[2] = new JButton("*");
         operationButtons[3] = new JButton("/");
-        operationButtons[4] = new JButton("**");  // Exponents
-        operationButtons[5] = new JButton("-**");  // Reciprocal Exponents
-        operationButtons[6] = new JButton("//");  // Floor Division
-        operationButtons[7] = new JButton("%");  // Modulo
-        operationButtons[8] = new JButton("=");  // Equals
+        operationButtons[4] = new JButton("**");  
+        operationButtons[5] = new JButton("-**");  
+        operationButtons[6] = new JButton("//"); 
+        operationButtons[7] = new JButton("%"); 
+        operationButtons[8] = new JButton("=");  
 
         for (JButton button : operationButtons) {
             button.setFont(new Font("Arial", Font.PLAIN, 24));
         }
 
+        JButton blankButton = new JButton("");
+        JButton blankButton1 = new JButton("");
+        JButton blankButton2 = new JButton("");
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        decimalButton = new JButton(".");
+        decimalButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        negativeButton = new JButton("(-)");
+        negativeButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        helpButton = new JButton("?");
+        helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 5));
+        buttonPanel.setLayout(new GridLayout(5, 5));
+        
+        buttonPanel.add(blankButton);
+        buttonPanel.add(blankButton1);
+        buttonPanel.add(helpButton);
+        buttonPanel.add(clearButton); //C
+        buttonPanel.add(operationButtons[8]); // =
 
         buttonPanel.add(numberButtons[7]);
         buttonPanel.add(numberButtons[8]);
@@ -81,10 +103,11 @@ public class CalculatorGUI {
         buttonPanel.add(operationButtons[7]); // %
 
         buttonPanel.add(numberButtons[0]);
-        buttonPanel.add(clearButton); //C
-        buttonPanel.add(operationButtons[8]); // =
+        buttonPanel.add(decimalButton);
+        buttonPanel.add(negativeButton);
         buttonPanel.add(operationButtons[4]); // **
         buttonPanel.add(operationButtons[5]); // -**
+        
 
         frame.add(buttonPanel, BorderLayout.CENTER);
 
@@ -103,6 +126,48 @@ public class CalculatorGUI {
                 startNewInput = true;
             }
         });
+        
+        decimalButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (startNewInput) {
+                    inputField.setText("0.");
+                    startNewInput = false;
+                } else if (inputField.getText().indexOf('.') == -1) {
+                    inputField.setText(inputField.getText() + ".");
+                }
+            }
+        });
+
+        negativeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!inputField.getText().isEmpty()) {
+                    double currentNumber = Double.parseDouble(inputField.getText());
+                    double negatedNumber = Calculator.negative(currentNumber);
+                    inputField.setText(String.valueOf(negatedNumber));
+                }
+            }
+        });
+        /*
+        helpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String instructions = "Welcome to the Calculator!\n"
+                        + "Use the number buttons to input numbers.\n"
+                        + "Use the operation buttons to perform calculations.\n"
+                        + "You can use the decimal (.) button for decimal numbers.\n"
+                        + "The negative (-) button negates the current number.\n"
+                        + "Click the equals (=) button to get the result.\n"
+                        + "Enjoy calculating!";
+                JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }); */
+        
+        helpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String instructions = loadInstructionsFromFile("help.txt");
+                JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
 
         equalsButton = new JButton("=");
         equalsButton.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -175,6 +240,28 @@ public class CalculatorGUI {
             operator = buttonText;
             num1 = Double.parseDouble(inputField.getText());
             startNewInput = true;
+        }
+    }
+    
+    private String loadInstructionsFromFile(String fileName) {
+        try {
+            InputStream inputStream = CalculatorGUI.class.getResourceAsStream(fileName);
+            
+            if (inputStream != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder instructions = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    instructions.append(line).append("\n");
+                }
+                reader.close();
+                return instructions.toString();
+            } else {
+                return "Instructions not found.";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error loading instructions.";
         }
     }
 
