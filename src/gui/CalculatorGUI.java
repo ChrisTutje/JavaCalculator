@@ -4,13 +4,16 @@
  * Oct 30, 2023
  */
 package gui;
-
 import model.Calculator;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import javax.swing.JOptionPane;
 
 public class CalculatorGUI {
@@ -144,7 +147,7 @@ public class CalculatorGUI {
                 }
             }
         });
-        
+        /*
         helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String instructions = "Welcome to the Calculator!\n"
@@ -156,7 +159,15 @@ public class CalculatorGUI {
                         + "Enjoy calculating!";
                 JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
             }
+        }); */
+        
+        helpButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String instructions = loadInstructionsFromFile("help.txt");
+                JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
+            }
         });
+
 
         equalsButton = new JButton("=");
         equalsButton.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -229,6 +240,28 @@ public class CalculatorGUI {
             operator = buttonText;
             num1 = Double.parseDouble(inputField.getText());
             startNewInput = true;
+        }
+    }
+    
+    private String loadInstructionsFromFile(String fileName) {
+        try {
+            InputStream inputStream = CalculatorGUI.class.getResourceAsStream(fileName);
+            
+            if (inputStream != null) {
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder instructions = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    instructions.append(line).append("\n");
+                }
+                reader.close();
+                return instructions.toString();
+            } else {
+                return "Instructions not found.";
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Error loading instructions.";
         }
     }
 
