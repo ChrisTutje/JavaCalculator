@@ -69,6 +69,10 @@ public class Calculator {
         }
         return a % b;
     }
+    
+    public static double negative(double number) {
+        return -number;
+    }
 }
 
 

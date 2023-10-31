@@ -19,6 +19,8 @@ public class CalculatorGUI {
     private JButton[] operationButtons;
     private JButton equalsButton;
     private JButton clearButton;
+    private JButton decimalButton;
+    private JButton negativeButton;
 
     private double num1 = 0;
     private String operator = "";
@@ -41,26 +43,39 @@ public class CalculatorGUI {
             numberButtons[i].setFont(new Font("Arial", Font.PLAIN, 24));
         }
 
-        operationButtons = new JButton[9];  // Adjust the array size to accommodate new operations
+        operationButtons = new JButton[9];  // array size of operation buttons
         operationButtons[0] = new JButton("+");
         operationButtons[1] = new JButton("-");
         operationButtons[2] = new JButton("*");
         operationButtons[3] = new JButton("/");
-        operationButtons[4] = new JButton("**");  // Exponents
-        operationButtons[5] = new JButton("-**");  // Reciprocal Exponents
-        operationButtons[6] = new JButton("//");  // Floor Division
-        operationButtons[7] = new JButton("%");  // Modulo
-        operationButtons[8] = new JButton("=");  // Equals
+        operationButtons[4] = new JButton("**");  
+        operationButtons[5] = new JButton("-**");  
+        operationButtons[6] = new JButton("//"); 
+        operationButtons[7] = new JButton("%"); 
+        operationButtons[8] = new JButton("=");  
 
         for (JButton button : operationButtons) {
             button.setFont(new Font("Arial", Font.PLAIN, 24));
         }
 
+        JButton blankButton = new JButton("");
+        JButton blankButton1 = new JButton("");
+        JButton blankButton2 = new JButton("");
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        decimalButton = new JButton(".");
+        decimalButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        negativeButton = new JButton("(-)");
+        negativeButton.setFont(new Font("Arial", Font.PLAIN, 24));
 
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(4, 5));
+        buttonPanel.setLayout(new GridLayout(5, 5));
+        
+        buttonPanel.add(blankButton);
+        buttonPanel.add(blankButton1);
+        buttonPanel.add(blankButton2);
+        buttonPanel.add(clearButton); //C
+        buttonPanel.add(operationButtons[8]); // =
 
         buttonPanel.add(numberButtons[7]);
         buttonPanel.add(numberButtons[8]);
@@ -81,10 +96,11 @@ public class CalculatorGUI {
         buttonPanel.add(operationButtons[7]); // %
 
         buttonPanel.add(numberButtons[0]);
-        buttonPanel.add(clearButton); //C
-        buttonPanel.add(operationButtons[8]); // =
+        buttonPanel.add(decimalButton);
+        buttonPanel.add(negativeButton);
         buttonPanel.add(operationButtons[4]); // **
         buttonPanel.add(operationButtons[5]); // -**
+        
 
         frame.add(buttonPanel, BorderLayout.CENTER);
 
@@ -101,6 +117,27 @@ public class CalculatorGUI {
                 num1 = 0;
                 operator = "";
                 startNewInput = true;
+            }
+        });
+        
+        decimalButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (startNewInput) {
+                    inputField.setText("0.");
+                    startNewInput = false;
+                } else if (inputField.getText().indexOf('.') == -1) {
+                    inputField.setText(inputField.getText() + ".");
+                }
+            }
+        });
+
+        negativeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!inputField.getText().isEmpty()) {
+                    double currentNumber = Double.parseDouble(inputField.getText());
+                    double negatedNumber = Calculator.negative(currentNumber);
+                    inputField.setText(String.valueOf(negatedNumber));
+                }
             }
         });
 
