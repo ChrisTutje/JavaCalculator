@@ -147,19 +147,6 @@ public class CalculatorGUI {
                 }
             }
         });
-        /*
-        helpButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String instructions = "Welcome to the Calculator!\n"
-                        + "Use the number buttons to input numbers.\n"
-                        + "Use the operation buttons to perform calculations.\n"
-                        + "You can use the decimal (.) button for decimal numbers.\n"
-                        + "The negative (-) button negates the current number.\n"
-                        + "Click the equals (=) button to get the result.\n"
-                        + "Enjoy calculating!";
-                JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
-            }
-        }); */
         
         helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
