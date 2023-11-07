@@ -5,6 +5,7 @@
  */
 package gui;
 import model.Calculator;
+import gui.ListOperatorGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -64,8 +65,6 @@ public class CalculatorGUI {
         }
 
         JButton blankButton = new JButton("");
-        JButton blankButton1 = new JButton("");
-        JButton blankButton2 = new JButton("");
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
         decimalButton = new JButton(".");
@@ -74,13 +73,16 @@ public class CalculatorGUI {
         negativeButton.setFont(new Font("Arial", Font.PLAIN, 24));
         helpButton = new JButton("?");
         helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        JButton listButton = new JButton("[]");
+        listButton.setFont(new Font("Arial", Font.PLAIN, 24));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
-        buttonPanel.add(blankButton);
-        buttonPanel.add(blankButton1);
         buttonPanel.add(helpButton);
+        buttonPanel.add(blankButton);
+        buttonPanel.add(listButton);
+        buttonPanel.add(blankButton);
         buttonPanel.add(clearButton); //C
         buttonPanel.add(operationButtons[8]); // =
 
@@ -150,15 +152,26 @@ public class CalculatorGUI {
         
         helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String instructions = loadInstructionsFromFile("help.txt");
+                String instructions = loadInstructionsFromFile("calculatorHelp.txt");
                 JOptionPane.showMessageDialog(frame, instructions, "Instructions", JOptionPane.INFORMATION_MESSAGE);
             }
         });
+        
+        listButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ListOperatorGUI listOperatorGUI = new ListOperatorGUI();
+                listOperatorGUI.showListOperatorWindow();
+            }
+        });
+        
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.setVisible(true);
+    
 
 
         equalsButton = new JButton("=");
         equalsButton.setFont(new Font("Arial", Font.PLAIN, 24));
-        //frame.add(equalsButton, BorderLayout.SOUTH);
         equalsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String input = inputField.getText();
