@@ -12,17 +12,59 @@ public class ListOperator {
         numberList = new ArrayList<>();
     }
 
-    public void appendToList(double number) {
+    public void append(double number) {
         numberList.add(number);
     }
 
-    public void popFromList() {
+    public void pop() {
         if (!numberList.isEmpty()) {
             numberList.remove(numberList.size() - 1);
         }
     }
+    
+    public double Sum() {
+        double sum = 0;
+        for (double value : numberList) {
+            sum += value;
+        }
+        return sum;
+    }
 
-    public double calculateMean() {
+    public double Difference() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        double difference = numberList.get(0);
+        for (int i = 1; i < numberList.size(); i++) {
+            difference -= numberList.get(i);
+        }
+        return difference;
+    }
+
+    public double Product() {
+        double product = 1;
+        for (double value : numberList) {
+            product *= value;
+        }
+        return product;
+    }
+
+    public double Quotient() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        double quotient = numberList.get(0);
+        for (int i = 1; i < numberList.size(); i++) {
+            if (numberList.get(i) != 0) {
+                quotient /= numberList.get(i);
+            } else {
+                throw new ArithmeticException("Division by zero is not allowed.");
+            }
+        }
+        return quotient;
+    }
+
+    public double Mean() {
         if (numberList.isEmpty()) {
             return 0;
         }
@@ -30,7 +72,7 @@ public class ListOperator {
         return sum / numberList.size();
     }
 
-    public double calculateMedian() {
+    public double Median() {
         if (numberList.isEmpty()) {
             return 0;
         }
@@ -44,7 +86,7 @@ public class ListOperator {
         }
     }
 
-    public List<Double> calculateMode() {
+    public List<Double> Mode() {
         if (numberList.isEmpty()) {
             return new ArrayList<>();
         }
