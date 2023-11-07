@@ -62,6 +62,10 @@ public class ListOperator {
         }
         return modeList;
     }
+    
+    public void removeAll() {
+        numberList.clear(); 
+    }
 
     public String getListAsString() {
         return numberList.stream().map(Object::toString).collect(Collectors.joining(", "));

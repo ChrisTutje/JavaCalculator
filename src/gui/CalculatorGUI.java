@@ -65,8 +65,6 @@ public class CalculatorGUI {
         }
 
         JButton blankButton = new JButton("");
-        JButton blankButton1 = new JButton("");
-        JButton blankButton2 = new JButton("");
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
         decimalButton = new JButton(".");
@@ -81,9 +79,10 @@ public class CalculatorGUI {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
+        buttonPanel.add(helpButton);
         buttonPanel.add(blankButton);
         buttonPanel.add(listButton);
-        buttonPanel.add(helpButton);
+        buttonPanel.add(blankButton);
         buttonPanel.add(clearButton); //C
         buttonPanel.add(operationButtons[8]); // =
 
@@ -173,7 +172,6 @@ public class CalculatorGUI {
 
         equalsButton = new JButton("=");
         equalsButton.setFont(new Font("Arial", Font.PLAIN, 24));
-        //frame.add(equalsButton, BorderLayout.SOUTH);
         equalsButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String input = inputField.getText();

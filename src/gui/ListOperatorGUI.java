@@ -19,6 +19,10 @@ public class ListOperatorGUI {
     private JButton meanButton;
     private JButton medianButton;
     private JButton modeButton;
+    private JButton decimalButton;
+    private JButton negativeButton;
+    private JButton removeAllButton;
+    
     private ListOperator listOperator;
 
     public ListOperatorGUI() {
@@ -126,12 +130,42 @@ public class ListOperatorGUI {
             }
         });
         
+        decimalButton = new JButton(".");
+        decimalButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        decimalButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!inputField.getText().contains(".")) {
+                    inputField.setText(inputField.getText() + ".");
+                }
+            }
+        });
+        
+        negativeButton = new JButton("(-)");
+        negativeButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        negativeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                if (!inputField.getText().isEmpty()) {
+                    double currentValue = Double.parseDouble(inputField.getText());
+                    inputField.setText(String.valueOf(-currentValue));
+                }
+            }
+        });
+        
+        removeAllButton = new JButton("-r*");
+        removeAllButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        removeAllButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                listOperator.removeAll(); 
+                inputField.setText(""); 
+            }
+        });
+        
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
         buttonPanel.add(blankButton);
         buttonPanel.add(blankButton1);
-        buttonPanel.add(blankButton2);
+        buttonPanel.add(removeAllButton);
         buttonPanel.add(clearButton);
         buttonPanel.add(displayButton);
         
@@ -154,8 +188,8 @@ public class ListOperatorGUI {
         buttonPanel.add(medianButton);
         
         buttonPanel.add(numberButtons[0]);
-        buttonPanel.add(blankButton11);
-        buttonPanel.add(blankButton12);
+        buttonPanel.add(decimalButton);
+        buttonPanel.add(negativeButton);
         buttonPanel.add(modeButton);
         buttonPanel.add(blankButton14);
         
