@@ -33,6 +33,7 @@ public class ListOperatorGUI {
     private JButton meanButton;
     private JButton medianButton;
     private JButton modeButton;
+    private JButton stdDevButton;
     
     
     private JButton sumButton;       
@@ -272,6 +273,15 @@ public class ListOperatorGUI {
             }
         });
         
+        stdDevButton = new JButton("Dev");
+        stdDevButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        stdDevButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                double stdDev = listOperator.calculateStandardDeviation();
+                JOptionPane.showMessageDialog(listFrame, "Standard Deviation: " + stdDev, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(7, 5));
         
@@ -303,7 +313,7 @@ public class ListOperatorGUI {
         buttonPanel.add(decimalButton);
         buttonPanel.add(negativeButton);
         buttonPanel.add(modeButton);
-        buttonPanel.add(blankButton1);
+        buttonPanel.add(stdDevButton);
         
         buttonPanel.add(sumButton);             
         buttonPanel.add(differenceButton);

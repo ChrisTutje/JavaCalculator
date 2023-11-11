@@ -141,6 +141,23 @@ public class ListOperator {
     public int getLength() {
         return numberList.size();
     }
+    
+    public double calculateStandardDeviation() {
+        if (numberList.isEmpty()) {
+            return 0;
+        }
+
+        double mean = Mean();
+
+        double sumOfSquaredDifferences = 0;
+        for (double value : numberList) {
+            sumOfSquaredDifferences += Math.pow(value - mean, 2);
+        }
+
+        double variance = sumOfSquaredDifferences / numberList.size();
+
+        return Math.sqrt(variance);
+    }
 
     public String getListAsString() {
         return numberList.stream().map(Object::toString).collect(Collectors.joining(", "));
