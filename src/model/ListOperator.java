@@ -108,6 +108,10 @@ public class ListOperator {
     public void removeAll() {
         numberList.clear(); 
     }
+    
+    public void sort() {
+        Collections.sort(numberList);
+    }
 
     public String getListAsString() {
         return numberList.stream().map(Object::toString).collect(Collectors.joining(", "));

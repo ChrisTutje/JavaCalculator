@@ -31,6 +31,8 @@ public class ListOperatorGUI {
     private JButton differenceButton; 
     private JButton productButton;    
     private JButton quotientButton;
+    private JButton sortButton;
+    private JButton shuffleButton;
     
     private ListOperator listOperator;
 
@@ -169,6 +171,7 @@ public class ListOperatorGUI {
             }
         });
         
+        
         helpButton = new JButton("?");
         helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
         helpButton.addActionListener(new ActionListener() {
@@ -178,7 +181,7 @@ public class ListOperatorGUI {
             }
         });
         
-        sumButton = new JButton("+ *");                 
+        sumButton = new JButton("\u2211");                 
         sumButton.setFont(new Font("Arial", Font.PLAIN, 24));
         sumButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -187,7 +190,7 @@ public class ListOperatorGUI {
             }
         });
         
-        differenceButton = new JButton("- *");   
+        differenceButton = new JButton("-*");   
         differenceButton.setFont(new Font("Arial", Font.PLAIN, 24));
         differenceButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -196,7 +199,7 @@ public class ListOperatorGUI {
             }
         });
 
-        productButton = new JButton("* *");         
+        productButton = new JButton("\u220F");         
         productButton.setFont(new Font("Arial", Font.PLAIN, 24));
         productButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -205,12 +208,21 @@ public class ListOperatorGUI {
             }
         });
 
-        quotientButton = new JButton("/ *");       
+        quotientButton = new JButton("/*");       
         quotientButton.setFont(new Font("Arial", Font.PLAIN, 24));
         quotientButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 double quotient = listOperator.Quotient();
                 JOptionPane.showMessageDialog(listFrame, "Quotient: " + quotient, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        sortButton = new JButton("Sort");
+        sortButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        sortButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                listOperator.sort();
+                inputField.setText(listOperator.getListAsString());
             }
         });
         
@@ -232,7 +244,7 @@ public class ListOperatorGUI {
         buttonPanel.add(numberButtons[4]);
         buttonPanel.add(numberButtons[5]);
         buttonPanel.add(numberButtons[6]);
-        buttonPanel.add(blankButton7);
+        buttonPanel.add(sortButton);
         buttonPanel.add(blankButton8);
         
         buttonPanel.add(numberButtons[1]);
@@ -267,7 +279,7 @@ public class ListOperatorGUI {
     
     private String loadInstructionsFromFile(String fileName) {
         try {
-            InputStream inputStream = CalculatorGUI.class.getResourceAsStream(fileName);
+        	InputStream inputStream = ListOperatorGUI.class.getResourceAsStream(fileName);
             
             if (inputStream != null) {
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
