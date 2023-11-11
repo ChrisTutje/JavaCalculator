@@ -22,7 +22,7 @@ public class ListOperator {
         }
     }
     
-    public double Sum() {
+    public double calculateSum() {
         double sum = 0;
         for (double value : numberList) {
             sum += value;
@@ -30,7 +30,7 @@ public class ListOperator {
         return sum;
     }
 
-    public double Difference() {
+    public double calculateDifference() {
         if (numberList.isEmpty()) {
             return 0; 
         }
@@ -41,7 +41,7 @@ public class ListOperator {
         return difference;
     }
 
-    public double Product() {
+    public double calculateProduct() {
         double product = 1;
         for (double value : numberList) {
             product *= value;
@@ -49,7 +49,7 @@ public class ListOperator {
         return product;
     }
 
-    public double Quotient() {
+    public double calculateQuotient() {
         if (numberList.isEmpty()) {
             return 0; 
         }
@@ -64,7 +64,7 @@ public class ListOperator {
         return quotient;
     }
 
-    public double Mean() {
+    public double calculateMean() {
         if (numberList.isEmpty()) {
             return 0;
         }
@@ -72,7 +72,7 @@ public class ListOperator {
         return sum / numberList.size();
     }
 
-    public double Median() {
+    public double calculateMedian() {
         if (numberList.isEmpty()) {
             return 0;
         }
@@ -86,7 +86,7 @@ public class ListOperator {
         }
     }
 
-    public List<Double> Mode() {
+    public List<Double> calculateMode() {
         if (numberList.isEmpty()) {
             return new ArrayList<>();
         }
@@ -107,6 +107,73 @@ public class ListOperator {
     
     public void removeAll() {
         numberList.clear(); 
+    }
+    
+    public void sort() {
+        Collections.sort(numberList);
+    }
+    
+    public void shuffle() {
+        Collections.shuffle(numberList);
+    }
+    
+    public double getMin() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        return Collections.min(numberList);
+    }
+
+    public double getMax() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        return Collections.max(numberList);
+    }
+
+    public double getRange() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        return getMax() - getMin();
+    }
+    
+    public int getLength() {
+        return numberList.size();
+    }
+    
+    public double calculateStandardDeviation() {
+        if (numberList.isEmpty()) {
+            return 0;
+        }
+
+        double mean = calculateMean();
+
+        double sumOfSquaredDifferences = 0;
+        for (double value : numberList) {
+            sumOfSquaredDifferences += Math.pow(value - mean, 2);
+        }
+
+        double variance = sumOfSquaredDifferences / numberList.size();
+
+        return Math.sqrt(variance);
+    }
+    
+    public String calculateDelta() {
+        if (numberList.isEmpty() || numberList.size() == 1) {
+            return "No delta";
+        }
+
+        double firstDifference = numberList.get(1) - numberList.get(0);
+
+        for (int i = 1; i < numberList.size() - 1; i++) {
+            double currentDifference = numberList.get(i + 1) - numberList.get(i);
+            if (currentDifference != firstDifference) {
+                return "No delta";
+            }
+        }
+
+        return String.valueOf(firstDifference);
     }
 
     public String getListAsString() {
