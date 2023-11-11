@@ -22,7 +22,7 @@ public class ListOperator {
         }
     }
     
-    public double Sum() {
+    public double calculateSum() {
         double sum = 0;
         for (double value : numberList) {
             sum += value;
@@ -30,7 +30,7 @@ public class ListOperator {
         return sum;
     }
 
-    public double Difference() {
+    public double calculateDifference() {
         if (numberList.isEmpty()) {
             return 0; 
         }
@@ -41,7 +41,7 @@ public class ListOperator {
         return difference;
     }
 
-    public double Product() {
+    public double calculateProduct() {
         double product = 1;
         for (double value : numberList) {
             product *= value;
@@ -49,7 +49,7 @@ public class ListOperator {
         return product;
     }
 
-    public double Quotient() {
+    public double calculateQuotient() {
         if (numberList.isEmpty()) {
             return 0; 
         }
@@ -64,7 +64,7 @@ public class ListOperator {
         return quotient;
     }
 
-    public double Mean() {
+    public double calculateMean() {
         if (numberList.isEmpty()) {
             return 0;
         }
@@ -72,7 +72,7 @@ public class ListOperator {
         return sum / numberList.size();
     }
 
-    public double Median() {
+    public double calculateMedian() {
         if (numberList.isEmpty()) {
             return 0;
         }
@@ -86,7 +86,7 @@ public class ListOperator {
         }
     }
 
-    public List<Double> Mode() {
+    public List<Double> calculateMode() {
         if (numberList.isEmpty()) {
             return new ArrayList<>();
         }
@@ -147,7 +147,7 @@ public class ListOperator {
             return 0;
         }
 
-        double mean = Mean();
+        double mean = calculateMean();
 
         double sumOfSquaredDifferences = 0;
         for (double value : numberList) {

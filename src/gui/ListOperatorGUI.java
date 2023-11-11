@@ -35,7 +35,6 @@ public class ListOperatorGUI {
     private JButton modeButton;
     private JButton stdDevButton;
     
-    
     private JButton sumButton;       
     private JButton differenceButton; 
     private JButton productButton;    
@@ -117,20 +116,20 @@ public class ListOperatorGUI {
             }
         });
 
-        meanButton = new JButton("AVG");
+        meanButton = new JButton("μ");
         meanButton.setFont(new Font("Arial", Font.PLAIN, 24));
         meanButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double mean = listOperator.Mean();
+                double mean = listOperator.calculateMean();
                 JOptionPane.showMessageDialog(listFrame, "Mean: " + mean, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 
-        medianButton = new JButton("MED");
+        medianButton = new JButton("Med");
         medianButton.setFont(new Font("Arial", Font.PLAIN, 24));
         medianButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double median = listOperator.Median();
+                double median = listOperator.calculateMedian();
                 JOptionPane.showMessageDialog(listFrame, "Median: " + median, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -139,7 +138,7 @@ public class ListOperatorGUI {
         modeButton.setFont(new Font("Arial", Font.PLAIN, 24));
         modeButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                List<Double> modeList = listOperator.Mode();
+                List<Double> modeList = listOperator.calculateMode();
                 JOptionPane.showMessageDialog(listFrame, "Mode: " + modeList, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -174,7 +173,6 @@ public class ListOperatorGUI {
             }
         });
         
-        
         helpButton = new JButton("?");
         helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
         helpButton.addActionListener(new ActionListener() {
@@ -188,7 +186,7 @@ public class ListOperatorGUI {
         sumButton.setFont(new Font("Arial", Font.PLAIN, 24));
         sumButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double sum = listOperator.Sum();
+                double sum = listOperator.calculateSum();
                 JOptionPane.showMessageDialog(listFrame, "Sum: " + sum, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -197,7 +195,7 @@ public class ListOperatorGUI {
         differenceButton.setFont(new Font("Arial", Font.PLAIN, 24));
         differenceButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double difference = listOperator.Difference();
+                double difference = listOperator.calculateDifference();
                 JOptionPane.showMessageDialog(listFrame, "Difference: " + difference, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -206,7 +204,7 @@ public class ListOperatorGUI {
         productButton.setFont(new Font("Arial", Font.PLAIN, 24));
         productButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double product = listOperator.Product();
+                double product = listOperator.calculateProduct();
                 JOptionPane.showMessageDialog(listFrame, "Product: " + product, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -215,7 +213,7 @@ public class ListOperatorGUI {
         quotientButton.setFont(new Font("Arial", Font.PLAIN, 24));
         quotientButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double quotient = listOperator.Quotient();
+                double quotient = listOperator.calculateQuotient();
                 JOptionPane.showMessageDialog(listFrame, "Quotient: " + quotient, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
@@ -274,7 +272,7 @@ public class ListOperatorGUI {
             }
         });
         
-        stdDevButton = new JButton("Dev");
+        stdDevButton = new JButton("σ");
         stdDevButton.setFont(new Font("Arial", Font.PLAIN, 24));
         stdDevButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -335,7 +333,7 @@ public class ListOperatorGUI {
         buttonPanel.add(maxButton);
         buttonPanel.add(rangeButton);         
         buttonPanel.add(lengthButton);
-        buttonPanel.add(blankButton3);
+        buttonPanel.add(blankButton1);
         
 
         listFrame.add(inputField, BorderLayout.NORTH);
