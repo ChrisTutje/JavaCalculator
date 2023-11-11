@@ -158,6 +158,23 @@ public class ListOperator {
 
         return Math.sqrt(variance);
     }
+    
+    public String calculateDelta() {
+        if (numberList.isEmpty() || numberList.size() == 1) {
+            return "No delta";
+        }
+
+        double firstDifference = numberList.get(1) - numberList.get(0);
+
+        for (int i = 1; i < numberList.size() - 1; i++) {
+            double currentDifference = numberList.get(i + 1) - numberList.get(i);
+            if (currentDifference != firstDifference) {
+                return "No delta";
+            }
+        }
+
+        return String.valueOf(firstDifference);
+    }
 
     public String getListAsString() {
         return numberList.stream().map(Object::toString).collect(Collectors.joining(", "));

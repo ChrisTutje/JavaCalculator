@@ -40,6 +40,7 @@ public class ListOperatorGUI {
     private JButton differenceButton; 
     private JButton productButton;    
     private JButton quotientButton;
+    private JButton deltaButton;
     
     private JButton minButton;
     private JButton maxButton;
@@ -228,7 +229,7 @@ public class ListOperatorGUI {
             }
         });
         
-        shuffleButton = new JButton("shuffle");
+        shuffleButton = new JButton("Shuffle");
         shuffleButton.setFont(new Font("Arial", Font.PLAIN, 24));
         shuffleButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -282,6 +283,15 @@ public class ListOperatorGUI {
             }
         });
         
+        deltaButton = new JButton("Δ");
+        deltaButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        deltaButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String deltaResult = listOperator.calculateDelta();
+                JOptionPane.showMessageDialog(listFrame, "Delta: " + deltaResult, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(7, 5));
         
@@ -319,7 +329,7 @@ public class ListOperatorGUI {
         buttonPanel.add(differenceButton);
         buttonPanel.add(productButton);          
         buttonPanel.add(quotientButton);
-        buttonPanel.add(blankButton2);
+        buttonPanel.add(deltaButton);
         
         buttonPanel.add(minButton);
         buttonPanel.add(maxButton);
