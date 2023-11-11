@@ -16,23 +16,34 @@ public class ListOperatorGUI {
     private JFrame listFrame;
     private JTextField inputField;
     private JButton[] numberButtons;
+    private JButton decimalButton;
+    private JButton negativeButton;
+    
+    private JButton helpButton;
+    private JButton removeAllButton;
     private JButton clearButton;
     private JButton displayButton;
+    
     private JButton appendButton;
     private JButton popButton;
+    
+    private JButton sortButton;
+    private JButton shuffleButton;
+    
     private JButton meanButton;
     private JButton medianButton;
     private JButton modeButton;
-    private JButton decimalButton;
-    private JButton negativeButton;
-    private JButton removeAllButton;
-    private JButton helpButton;
+    
+    
     private JButton sumButton;       
     private JButton differenceButton; 
     private JButton productButton;    
     private JButton quotientButton;
-    private JButton sortButton;
-    private JButton shuffleButton;
+    
+    private JButton minButton;
+    private JButton maxButton;
+    private JButton rangeButton;
+    private JButton lengthButton;
     
     private ListOperator listOperator;
 
@@ -65,16 +76,6 @@ public class ListOperatorGUI {
         JButton blankButton2 = new JButton("");
         JButton blankButton3 = new JButton("");
         JButton blankButton4 = new JButton("");
-        JButton blankButton5 = new JButton("");
-        JButton blankButton6 = new JButton("");
-        JButton blankButton7 = new JButton("");
-        JButton blankButton8 = new JButton("");
-        JButton blankButton9 = new JButton("");
-        JButton blankButton10 = new JButton("");
-        JButton blankButton11 = new JButton("");
-        JButton blankButton12 = new JButton("");
-        JButton blankButton13 = new JButton("");
-        JButton blankButton14 = new JButton("");
 
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -217,7 +218,7 @@ public class ListOperatorGUI {
             }
         });
         
-        sortButton = new JButton("Sort");
+        sortButton = new JButton("sort");
         sortButton.setFont(new Font("Arial", Font.PLAIN, 24));
         sortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -226,11 +227,56 @@ public class ListOperatorGUI {
             }
         });
         
+        shuffleButton = new JButton("shuffle");
+        shuffleButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        shuffleButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                listOperator.shuffle();
+                inputField.setText(listOperator.getListAsString());
+            }
+        });
+        
+        minButton = new JButton("Min");
+        minButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        minButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                double min = listOperator.getMin();
+                JOptionPane.showMessageDialog(listFrame, "Min: " + min, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        maxButton = new JButton("Max");
+        maxButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        maxButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                double max = listOperator.getMax();
+                JOptionPane.showMessageDialog(listFrame, "Max: " + max, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+
+        rangeButton = new JButton("Range");
+        rangeButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        rangeButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                double range = listOperator.getRange();
+                JOptionPane.showMessageDialog(listFrame, "Range: " + range, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
+        lengthButton = new JButton("Len");
+        lengthButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        lengthButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                int length = listOperator.getLength();
+                JOptionPane.showMessageDialog(listFrame, "Length: " + length, "Result", JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
+        
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(6, 5));
+        buttonPanel.setLayout(new GridLayout(7, 5));
         
         buttonPanel.add(helpButton);
-        buttonPanel.add(blankButton1);
+        buttonPanel.add(blankButton);
         buttonPanel.add(removeAllButton);
         buttonPanel.add(clearButton);
         buttonPanel.add(displayButton);
@@ -245,7 +291,7 @@ public class ListOperatorGUI {
         buttonPanel.add(numberButtons[5]);
         buttonPanel.add(numberButtons[6]);
         buttonPanel.add(sortButton);
-        buttonPanel.add(blankButton8);
+        buttonPanel.add(shuffleButton);
         
         buttonPanel.add(numberButtons[1]);
         buttonPanel.add(numberButtons[2]);
@@ -257,13 +303,19 @@ public class ListOperatorGUI {
         buttonPanel.add(decimalButton);
         buttonPanel.add(negativeButton);
         buttonPanel.add(modeButton);
-        buttonPanel.add(blankButton14);
+        buttonPanel.add(blankButton1);
         
         buttonPanel.add(sumButton);             
         buttonPanel.add(differenceButton);
         buttonPanel.add(productButton);          
         buttonPanel.add(quotientButton);
-        buttonPanel.add(blankButton13);
+        buttonPanel.add(blankButton2);
+        
+        buttonPanel.add(minButton);
+        buttonPanel.add(maxButton);
+        buttonPanel.add(rangeButton);         
+        buttonPanel.add(lengthButton);
+        buttonPanel.add(blankButton3);
         
 
         listFrame.add(inputField, BorderLayout.NORTH);

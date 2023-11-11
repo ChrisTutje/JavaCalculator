@@ -112,6 +112,35 @@ public class ListOperator {
     public void sort() {
         Collections.sort(numberList);
     }
+    
+    public void shuffle() {
+        Collections.shuffle(numberList);
+    }
+    
+    public double getMin() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        return Collections.min(numberList);
+    }
+
+    public double getMax() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        return Collections.max(numberList);
+    }
+
+    public double getRange() {
+        if (numberList.isEmpty()) {
+            return 0; 
+        }
+        return getMax() - getMin();
+    }
+    
+    public int getLength() {
+        return numberList.size();
+    }
 
     public String getListAsString() {
         return numberList.stream().map(Object::toString).collect(Collectors.joining(", "));
