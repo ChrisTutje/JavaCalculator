@@ -15,7 +15,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import javax.swing.JOptionPane;
 
 public class CalculatorGUI {
     private JFrame frame;
@@ -27,6 +26,7 @@ public class CalculatorGUI {
     private JButton decimalButton;
     private JButton negativeButton;
     private JButton helpButton;
+    private JButton listButton;
 
     private double num1 = 0;
     private String operator = "";
@@ -73,14 +73,13 @@ public class CalculatorGUI {
         negativeButton.setFont(new Font("Arial", Font.PLAIN, 24));
         helpButton = new JButton("?");
         helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
-        JButton listButton = new JButton("[]");
+        listButton = new JButton("[]");
         listButton.setFont(new Font("Arial", Font.PLAIN, 24));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
         buttonPanel.add(helpButton);
-        buttonPanel.add(blankButton);
         buttonPanel.add(listButton);
         buttonPanel.add(blankButton);
         buttonPanel.add(clearButton); //C
@@ -164,6 +163,8 @@ public class CalculatorGUI {
             }
         });
         
+        setTooltipsWithDelay();
+        
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
         frame.setVisible(true);
@@ -241,6 +242,44 @@ public class CalculatorGUI {
             num1 = Double.parseDouble(inputField.getText());
             startNewInput = true;
         }
+    }
+    
+    private void setTooltipsWithDelay() {
+        setTooltipWithDelay(numberButtons[0], "Zero");
+        setTooltipWithDelay(numberButtons[1], "One");
+        setTooltipWithDelay(numberButtons[2], "Two");
+        setTooltipWithDelay(numberButtons[3], "Three");
+        setTooltipWithDelay(numberButtons[4], "Four");
+        setTooltipWithDelay(numberButtons[5], "Five");
+        setTooltipWithDelay(numberButtons[6], "Six");
+        setTooltipWithDelay(numberButtons[7], "Seven");
+        setTooltipWithDelay(numberButtons[8], "Eight");
+        setTooltipWithDelay(numberButtons[9], "Nine");
+        setTooltipWithDelay(helpButton, "Help");
+        setTooltipWithDelay(listButton, "List Operations");
+        setTooltipWithDelay(clearButton, "Clear");
+        setTooltipWithDelay(operationButtons[8], "Equals");
+        setTooltipWithDelay(operationButtons[0], "Addition");
+        setTooltipWithDelay(operationButtons[1], "Subtraction");
+        setTooltipWithDelay(operationButtons[2], "Multiplication");
+        setTooltipWithDelay(operationButtons[3], "Division");
+        setTooltipWithDelay(operationButtons[6], "Floor Division");
+        setTooltipWithDelay(operationButtons[7], "Modular Division, Remainder");
+        setTooltipWithDelay(decimalButton, "Decimal");
+        setTooltipWithDelay(negativeButton, "Negative");
+        setTooltipWithDelay(operationButtons[4], "Exponent, Power");
+        setTooltipWithDelay(operationButtons[5], "Reciprocal");
+    }
+    
+    private void setTooltipWithDelay(JButton button, String tooltip) {
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                button.setToolTipText(tooltip);
+            }
+        });
+        timer.setRepeats(true); 
+        timer.start();
     }
     
     private String loadInstructionsFromFile(String fileName) {

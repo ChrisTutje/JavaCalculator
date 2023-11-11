@@ -218,7 +218,7 @@ public class ListOperatorGUI {
             }
         });
         
-        sortButton = new JButton("sort");
+        sortButton = new JButton("Sort");
         sortButton.setFont(new Font("Arial", Font.PLAIN, 24));
         sortButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -338,6 +338,8 @@ public class ListOperatorGUI {
 
         listFrame.add(inputField, BorderLayout.NORTH);
         listFrame.add(buttonPanel, BorderLayout.CENTER);
+        
+        setTooltipsWithDelay();
 
         listFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         listFrame.setSize(400, 400);
@@ -345,6 +347,53 @@ public class ListOperatorGUI {
 
     public void showListOperatorWindow() {
         listFrame.setVisible(true);
+    }
+    
+    private void setTooltipsWithDelay() {
+    	setTooltipWithDelay(numberButtons[0], "Zero");
+        setTooltipWithDelay(numberButtons[1], "One");
+        setTooltipWithDelay(numberButtons[2], "Two");
+        setTooltipWithDelay(numberButtons[3], "Three");
+        setTooltipWithDelay(numberButtons[4], "Four");
+        setTooltipWithDelay(numberButtons[5], "Five");
+        setTooltipWithDelay(numberButtons[6], "Six");
+        setTooltipWithDelay(numberButtons[7], "Seven");
+        setTooltipWithDelay(numberButtons[8], "Eight");
+        setTooltipWithDelay(numberButtons[9], "Nine");
+        setTooltipWithDelay(helpButton, "Help");
+        setTooltipWithDelay(removeAllButton, "Remove All");
+        setTooltipWithDelay(clearButton, "Clear");
+        setTooltipWithDelay(displayButton, "Display");
+        setTooltipWithDelay(appendButton, "Append");
+        setTooltipWithDelay(popButton, "Pop");
+        setTooltipWithDelay(sortButton, "Numerical Sort");
+        setTooltipWithDelay(shuffleButton, "Shuffle");
+        setTooltipWithDelay(meanButton, "Mean, Average");
+        setTooltipWithDelay(medianButton, "Median");
+        setTooltipWithDelay(modeButton, "Mode");
+        setTooltipWithDelay(stdDevButton, "Standard Deviation");
+        setTooltipWithDelay(decimalButton, "Decimal");
+        setTooltipWithDelay(negativeButton, "Negative");
+        setTooltipWithDelay(sumButton, "Sum");
+        setTooltipWithDelay(differenceButton, "Difference");
+        setTooltipWithDelay(productButton, "Product");
+        setTooltipWithDelay(quotientButton, "Quotient");
+        setTooltipWithDelay(minButton, "Minimim");
+        setTooltipWithDelay(maxButton, "Maximum");
+        setTooltipWithDelay(rangeButton, "Range");
+        setTooltipWithDelay(lengthButton, "Length");
+        setTooltipWithDelay(deltaButton, "Delta");
+    }
+    
+    private void setTooltipWithDelay(JButton button, String tooltip) {
+        Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                button.setToolTipText(tooltip);
+            }
+        });
+        timer.setRepeats(true); 
+        timer.start();
     }
     
     private String loadInstructionsFromFile(String fileName) {
