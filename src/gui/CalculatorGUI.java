@@ -27,6 +27,7 @@ public class CalculatorGUI {
     private JButton negativeButton;
     private JButton helpButton;
     private JButton listButton;
+    private JButton stringButton;
 
     private double num1 = 0;
     private String operator = "";
@@ -75,13 +76,16 @@ public class CalculatorGUI {
         helpButton.setFont(new Font("Arial", Font.PLAIN, 24));
         listButton = new JButton("[]");
         listButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        stringButton = new JButton("\"\"");
+        stringButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
         buttonPanel.add(helpButton);
         buttonPanel.add(listButton);
-        buttonPanel.add(blankButton);
+        buttonPanel.add(stringButton);
         buttonPanel.add(clearButton); //C
         buttonPanel.add(operationButtons[8]); // =
 
@@ -160,6 +164,13 @@ public class CalculatorGUI {
             public void actionPerformed(ActionEvent e) {
                 ListOperatorGUI listOperatorGUI = new ListOperatorGUI();
                 listOperatorGUI.showListOperatorWindow();
+            }
+        });
+        
+        stringButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                StringOperatorGUI stringOperatorGUI = new StringOperatorGUI();
+                stringOperatorGUI.showStringOperatorWindow();
             }
         });
         
@@ -257,6 +268,7 @@ public class CalculatorGUI {
         setTooltipWithDelay(numberButtons[9], "Nine");
         setTooltipWithDelay(helpButton, "Help");
         setTooltipWithDelay(listButton, "List Operations");
+        setTooltipWithDelay(stringButton, "String Operations");
         setTooltipWithDelay(clearButton, "Clear");
         setTooltipWithDelay(operationButtons[8], "Equals");
         setTooltipWithDelay(operationButtons[0], "Addition");
