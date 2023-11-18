@@ -32,18 +32,16 @@ public class Calculator {
         }
         return result;
     }
-
+    
     public static double divide(double... numbers) {
         if (numbers.length == 0) {
-            System.out.println("No numbers provided.");
-            return 0;
+            throw new IllegalArgumentException("No numbers provided.");
         }
 
         double result = numbers[0];
         for (int i = 1; i < numbers.length; i++) {
             if (numbers[i] == 0) {
-                System.out.println("Cannot divide by zero.");
-                return 0;
+                throw new IllegalArgumentException("Error: Dividing by 0");
             }
             result /= numbers[i];
         }
@@ -64,8 +62,7 @@ public class Calculator {
 
     public static double modulo(double a, double b) {
         if (b == 0) {
-            System.out.println("Cannot perform modulo with a divisor of zero.");
-            return 0;
+        	throw new IllegalArgumentException("Error: Modulo by 0");
         }
         return a % b;
     }

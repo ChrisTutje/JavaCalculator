@@ -189,37 +189,41 @@ public class CalculatorGUI {
                 String input = inputField.getText();
                 if (!input.isEmpty() && !operator.isEmpty()) {
                     double num2 = Double.parseDouble(input);
-                    double result = 0;
-                    switch (operator) {
-                        case "+":
-                            result = Calculator.add(num1, num2);
-                            break;
-                        case "-":
-                            result = Calculator.subtract(num1, num2);
-                            break;
-                        case "*":
-                            result = Calculator.multiply(num1, num2);
-                            break;
-                        case "/":
-                            result = Calculator.divide(num1, num2);
-                            break;
-                        case "**":
-                            result = Calculator.exponent(num1, num2);
-                            break;
-                        case "-**":
-                            result = Calculator.reciprocal(num1, num2);
-                            break;
-                        case "//":
-                            result = Calculator.floorDivide(num1, num2);
-                            break;
-                        case "%":
-                            result = Calculator.modulo(num1, num2);
-                            break;
+                    try {
+                        double result = 0;
+                        switch (operator) {
+                            case "+":
+                                result = Calculator.add(num1, num2);
+                                break;
+                            case "-":
+                                result = Calculator.subtract(num1, num2);
+                                break;
+                            case "*":
+                                result = Calculator.multiply(num1, num2);
+                                break;
+                            case "/":
+                                result = Calculator.divide(num1, num2);
+                                break;
+                            case "**":
+                                result = Calculator.exponent(num1, num2);
+                                break;
+                            case "-**":
+                                result = Calculator.reciprocal(num1, num2);
+                                break;
+                            case "//":
+                                result = Calculator.floorDivide(num1, num2);
+                                break;
+                            case "%":
+                                result = Calculator.modulo(num1, num2);
+                                break;
+                        }
+                        inputField.setText(String.valueOf(result));
+                        num1 = result;
+                        operator = "";
+                        startNewInput = true;
+                    } catch (IllegalArgumentException ex) {
+                        inputField.setText(ex.getMessage());
                     }
-                    inputField.setText(String.valueOf(result));
-                    num1 = result;
-                    operator = "";
-                    startNewInput = true;
                 }
             }
         });
