@@ -1,5 +1,6 @@
 package gui;
 
+import model.Calculator;
 import model.StringOperator;
 
 import javax.swing.*;
@@ -17,6 +18,10 @@ public class StringOperatorGUI {
     private JTextField inputField;
     private JButton helpButton;
     private JButton clearButton;
+    private JButton equalsButton;
+    private JButton concatenateButton;
+    private JButton substringSubtractButton;
+    private String currentInput = "";
 
 
     public StringOperatorGUI() {
@@ -69,7 +74,42 @@ public class StringOperatorGUI {
                 inputField.setText("");
             }
         });
-
+        
+        concatenateButton = new JButton("\"+\"");
+        concatenateButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        concatenateButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput = inputField.getText();
+                inputField.setText("");
+            }
+        });
+        
+        substringSubtractButton = new JButton("\"-\"");
+        substringSubtractButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        substringSubtractButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                currentInput = inputField.getText();
+                inputField.setText("");
+            }
+        });
+        
+        equalsButton = new JButton("=");
+        equalsButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        equalsButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                switch (e.getActionCommand()) {
+                    case "==":
+                        String resultConcat = StringOperator.concatenate(currentInput, inputField.getText());
+                        inputField.setText(resultConcat);
+                        break;
+                    case "=":
+                        String resultSubtract = StringOperator.substringSubtract(currentInput, inputField.getText());
+                        inputField.setText(resultSubtract);
+                        break;
+                }
+            }
+        });
+        
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(5, 5));
         
@@ -77,13 +117,13 @@ public class StringOperatorGUI {
         buttonPanel.add(blankButton1);
         buttonPanel.add(blankButton2);
         buttonPanel.add(clearButton);
-        buttonPanel.add(blankButton4);
+        buttonPanel.add(equalsButton);
         
         buttonPanel.add(blankButton5);
         buttonPanel.add(blankButton6);
         buttonPanel.add(blankButton7);
-        buttonPanel.add(blankButton8);
-        buttonPanel.add(blankButton9);
+        buttonPanel.add(concatenateButton);
+        buttonPanel.add(substringSubtractButton);
         
         buttonPanel.add(blankButton10);
         buttonPanel.add(blankButton11);
@@ -103,8 +143,6 @@ public class StringOperatorGUI {
         buttonPanel.add(blankButton23);
         buttonPanel.add(blankButton24);
 
-
-
         frame.add(inputField, BorderLayout.NORTH);
         frame.add(buttonPanel, BorderLayout.CENTER);
         
@@ -121,6 +159,8 @@ public class StringOperatorGUI {
     private void setTooltipsWithDelay() {
     	setTooltipWithDelay(helpButton, "Help");
     	setTooltipWithDelay(clearButton, "Clear");
+    	setTooltipWithDelay(concatenateButton, "Concatenate");
+    	setTooltipWithDelay(substringSubtractButton, "Substring subtraction");
 
     }
     

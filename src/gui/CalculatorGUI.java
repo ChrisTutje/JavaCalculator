@@ -5,6 +5,7 @@
  */
 package gui;
 import model.Calculator;
+import model.Constants;
 import gui.ListOperatorGUI;
 import javax.swing.*;
 import java.awt.*;
@@ -28,6 +29,8 @@ public class CalculatorGUI {
     private JButton helpButton;
     private JButton listButton;
     private JButton stringButton;
+    private JButton piButton;
+    private Constants constants;
 
     private double num1 = 0;
     private String operator = "";
@@ -36,6 +39,7 @@ public class CalculatorGUI {
     public CalculatorGUI() {
         frame = new JFrame("Calculator");
         frame.setLayout(new BorderLayout());
+        constants = new Constants();
 
         inputField = new JTextField();
         inputField.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -64,8 +68,14 @@ public class CalculatorGUI {
         for (JButton button : operationButtons) {
             button.setFont(new Font("Arial", Font.PLAIN, 24));
         }
+        
+        
 
         JButton blankButton = new JButton("");
+        JButton blankButton1 = new JButton("");
+        JButton blankButton2 = new JButton("");
+        JButton blankButton3 = new JButton("");
+        JButton blankButton4 = new JButton("");
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
         decimalButton = new JButton(".");
@@ -78,10 +88,11 @@ public class CalculatorGUI {
         listButton.setFont(new Font("Arial", Font.PLAIN, 24));
         stringButton = new JButton("\"\"");
         stringButton.setFont(new Font("Arial", Font.PLAIN, 24));
-        
-
+        piButton = new JButton("π");
+        piButton.setFont(new Font("Arial", Font.PLAIN, 24));
+      
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5, 5));
+        buttonPanel.setLayout(new GridLayout(6, 5));
         
         buttonPanel.add(helpButton);
         buttonPanel.add(listButton);
@@ -112,6 +123,12 @@ public class CalculatorGUI {
         buttonPanel.add(negativeButton);
         buttonPanel.add(operationButtons[4]); // **
         buttonPanel.add(operationButtons[5]); // -**
+        
+        buttonPanel.add(piButton);
+        buttonPanel.add(blankButton1);
+        buttonPanel.add(blankButton2);
+        buttonPanel.add(blankButton3);
+        buttonPanel.add(blankButton4);
         
 
         frame.add(buttonPanel, BorderLayout.CENTER);
@@ -173,6 +190,18 @@ public class CalculatorGUI {
                 stringOperatorGUI.showStringOperatorWindow();
             }
         });
+        
+        piButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	if (startNewInput) {
+                    inputField.setText(String.valueOf(constants.PI));
+                    startNewInput = false;
+                } else {
+                    inputField.setText(inputField.getText() + constants.PI);
+                }
+            }
+        });
+        
         
         setTooltipsWithDelay();
         
@@ -287,6 +316,7 @@ public class CalculatorGUI {
         setTooltipWithDelay(negativeButton, "Negative");
         setTooltipWithDelay(operationButtons[4], "Exponent, Power");
         setTooltipWithDelay(operationButtons[5], "Reciprocal");
+        setTooltipWithDelay(piButton, "Pi");
     }
     
     private void setTooltipWithDelay(JButton button, String tooltip) {
