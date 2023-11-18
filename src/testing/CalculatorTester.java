@@ -14,6 +14,12 @@ public class CalculatorTester {
     @Test
     public void testAdd() {
         assertEquals(4.0, Calculator.add(2.0, 2.0), 0.001);
+        //try {
+            //Calculator.add(Double.MAX_VALUE, 2.0);
+            //fail("Expected ArithmeticException for exceeding maximum value, but no exception was thrown.");
+        //} catch (ArithmeticException e) {
+            //assertEquals("Error: Result exceeds max value", e.getMessage());
+        //}
     }
 
     @Test
@@ -40,6 +46,12 @@ public class CalculatorTester {
     @Test
     public void testExponent() {
         assertEquals(4.0, Calculator.exponent(2.0, 2.0), 0.001);
+        try {
+            Calculator.exponent(Double.MAX_VALUE, 2.0);
+            fail("Expected ArithmeticException for infinite result, but no exception was thrown.");
+        } catch (ArithmeticException e) {
+            assertEquals("Error: Max value exceeded", e.getMessage());
+        }
     }
 
     @Test
@@ -50,7 +62,12 @@ public class CalculatorTester {
     @Test
     public void testFloorDivide() {
         assertEquals(1.0, Calculator.floorDivide(2.0, 2.0), 0.001);
-        assertEquals(Double.POSITIVE_INFINITY, Calculator.floorDivide(2.0, 0.0), 0.001);
+        try {
+            Calculator.floorDivide(2.0, 0.0);
+            fail("Expected IllegalArgumentException for dividing by zero, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Dividing by 0", e.getMessage());
+        }
     }
 
     @Test

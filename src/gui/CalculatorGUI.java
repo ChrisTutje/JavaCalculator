@@ -223,6 +223,8 @@ public class CalculatorGUI {
                         startNewInput = true;
                     } catch (IllegalArgumentException ex) {
                         inputField.setText(ex.getMessage());
+                    } catch (ArithmeticException ex) {
+                        inputField.setText(ex.getMessage());
                     }
                 }
             }

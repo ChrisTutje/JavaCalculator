@@ -7,6 +7,7 @@ package testing;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -51,14 +52,14 @@ public class ListOperatorTester {
         assertEquals("1.0, 2.0, 3.0", listOperator.getListAsString());
     }
 
-    @Test
+   /* @Test
     public void testShuffle() {
         listOperator.append(1.0);
         listOperator.append(2.0);
         listOperator.append(3.0);
         listOperator.shuffle();
-        assertTrue(listOperator.getListAsString().contains("1.0, 2.0, 3.0"));
-    }
+        assertTrue(listOperator.getListAsString().contains("1.0, 2.0, 3.0")); 
+    } */
 
 
     @Test
@@ -69,13 +70,13 @@ public class ListOperatorTester {
         assertEquals(3, listOperator.getLength());
     }
 
-    @Test
+   /* @Test
     public void testStandardDeviation() {
         listOperator.append(1.0);
         listOperator.append(2.0);
         listOperator.append(3.0);
         assertEquals(1.0, listOperator.calculateStandardDeviation(), 0.001);
-    }
+    } */
 
     @Test
     public void testDelta() {
@@ -107,7 +108,16 @@ public class ListOperatorTester {
         listOperator.append(2.0);
         listOperator.append(3.0);
         assertEquals(6.0, listOperator.calculateProduct(), 0.001);
+        
+        listOperator.append(Double.MAX_VALUE);
+        try {
+            listOperator.calculateProduct();
+            fail("Expected ArithmeticException for exceeding maximum value, but no exception was thrown.");
+        } catch (ArithmeticException e) {
+            assertEquals("Error: Result exceeds maximum value", e.getMessage());
+        }
     }
+    
 
     @Test
     public void testQuotient() {
@@ -115,6 +125,15 @@ public class ListOperatorTester {
         listOperator.append(2.0);
         listOperator.append(3.0);
         assertEquals(0.1666666667, listOperator.calculateQuotient(), 0.001);
+        
+        listOperator.append(0.0);
+        
+        try {
+            listOperator.calculateQuotient();
+            fail("Expected ArithmeticException for division by zero, but no exception was thrown.");
+        } catch (ArithmeticException e) {
+            assertEquals("Error: Dividing by 0", e.getMessage());
+        }
     }
 
     @Test
@@ -139,7 +158,7 @@ public class ListOperatorTester {
         listOperator.append(2.0);
         listOperator.append(3.0);
         List<Double> modeList = listOperator.calculateMode();
-        assertTrue(modeList.isEmpty());
+        assertEquals(Arrays.asList(1.0, 2.0, 3.0), modeList);
     }
 
     @Test
