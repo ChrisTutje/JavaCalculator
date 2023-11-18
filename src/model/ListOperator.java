@@ -44,6 +44,9 @@ public class ListOperator {
     public double calculateProduct() {
         double product = 1;
         for (double value : numberList) {
+            if (product > Double.MAX_VALUE / value) {
+                throw new ArithmeticException("Error: Result exceeds maximum value");
+            }
             product *= value;
         }
         return product;
@@ -58,7 +61,7 @@ public class ListOperator {
             if (numberList.get(i) != 0) {
                 quotient /= numberList.get(i);
             } else {
-                throw new ArithmeticException("Division by zero is not allowed.");
+                throw new ArithmeticException("Error: Dividing by 0");
             }
         }
         return quotient;

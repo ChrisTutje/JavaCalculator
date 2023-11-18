@@ -204,8 +204,12 @@ public class ListOperatorGUI {
         productButton.setFont(new Font("Arial", Font.PLAIN, 24));
         productButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double product = listOperator.calculateProduct();
-                JOptionPane.showMessageDialog(listFrame, "Product: " + product, "Result", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    double product = listOperator.calculateProduct();
+                    JOptionPane.showMessageDialog(listFrame, "Product: " + product, "Result", JOptionPane.INFORMATION_MESSAGE);
+                } catch (ArithmeticException ex) {
+                    JOptionPane.showMessageDialog(listFrame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -213,8 +217,12 @@ public class ListOperatorGUI {
         quotientButton.setFont(new Font("Arial", Font.PLAIN, 24));
         quotientButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                double quotient = listOperator.calculateQuotient();
-                JOptionPane.showMessageDialog(listFrame, "Quotient: " + quotient, "Result", JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    double quotient = listOperator.calculateQuotient();
+                    JOptionPane.showMessageDialog(listFrame, "Quotient: " + quotient, "Result", JOptionPane.INFORMATION_MESSAGE);
+                } catch (ArithmeticException ex) {
+                    JOptionPane.showMessageDialog(listFrame, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
         
