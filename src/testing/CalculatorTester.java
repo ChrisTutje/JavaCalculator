@@ -29,7 +29,12 @@ public class CalculatorTester {
     @Test
     public void testDivide() {
         assertEquals(1.0, Calculator.divide(2.0, 2.0), 0.001);
-        //assertEquals(Double.POSITIVE_INFINITY, Calculator.divide(2.0, 0.0), 0.001);
+        try {
+            Calculator.divide(2.0, 0.0);
+            fail("Expected IllegalArgumentException for dividing by zero, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Dividing by 0", e.getMessage());
+        }
     }
 
     @Test
@@ -51,7 +56,12 @@ public class CalculatorTester {
     @Test
     public void testModulo() {
         assertEquals(0.0, Calculator.modulo(2.0, 2.0), 0.001);
-        //assertEquals(Double.NaN, Calculator.modulo(6.0, 0.0), 0.001);
+        try {
+            Calculator.modulo(2.0, 0.0);
+            fail("Expected IllegalArgumentException for division by zero");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Modulo by 0", e.getMessage());
+        }
     }
 
     @Test
