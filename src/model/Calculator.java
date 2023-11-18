@@ -57,8 +57,12 @@ public class Calculator {
     }
 
     public static double floorDivide(double a, double b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Error: Dividing by 0");
+        }
         return (double) Math.floor(a / b);
     }
+
 
     public static double modulo(double a, double b) {
         if (b == 0) {

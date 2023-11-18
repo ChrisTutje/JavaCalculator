@@ -50,7 +50,12 @@ public class CalculatorTester {
     @Test
     public void testFloorDivide() {
         assertEquals(1.0, Calculator.floorDivide(2.0, 2.0), 0.001);
-        assertEquals(Double.POSITIVE_INFINITY, Calculator.floorDivide(2.0, 0.0), 0.001);
+        try {
+            Calculator.floorDivide(2.0, 0.0);
+            fail("Expected IllegalArgumentException for dividing by zero, but no exception was thrown.");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Dividing by 0", e.getMessage());
+        }
     }
 
     @Test
