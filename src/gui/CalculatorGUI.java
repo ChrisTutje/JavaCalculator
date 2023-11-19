@@ -5,6 +5,7 @@
  */
 package gui;
 import model.Calculator;
+import model.Constants;
 import gui.ListOperatorGUI;
 import javax.swing.*;
 import java.awt.*;
@@ -21,6 +22,7 @@ public class CalculatorGUI {
     private JTextField inputField;
     private JButton[] numberButtons;
     private JButton[] operationButtons;
+    private JButton factorialButton;
     private JButton equalsButton;
     private JButton clearButton;
     private JButton decimalButton;
@@ -28,6 +30,14 @@ public class CalculatorGUI {
     private JButton helpButton;
     private JButton listButton;
     private JButton stringButton;
+    private JButton piButton;
+    //private JButton tauButton;
+    private JButton phiButton;
+    private JButton eulerButton;
+    private JButton maxDoubleButton;
+    private JButton minDoubleButton;
+    private JButton positiveInfinityButton;
+    private Constants constants;
 
     private double num1 = 0;
     private String operator = "";
@@ -64,8 +74,14 @@ public class CalculatorGUI {
         for (JButton button : operationButtons) {
             button.setFont(new Font("Arial", Font.PLAIN, 24));
         }
+        
+        
 
         JButton blankButton = new JButton("");
+        JButton blankButton1 = new JButton("");
+        JButton blankButton2 = new JButton("");
+        JButton blankButton3 = new JButton("");
+        JButton blankButton4 = new JButton("");
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
         decimalButton = new JButton(".");
@@ -78,10 +94,25 @@ public class CalculatorGUI {
         listButton.setFont(new Font("Arial", Font.PLAIN, 24));
         stringButton = new JButton("\"\"");
         stringButton.setFont(new Font("Arial", Font.PLAIN, 24));
-        
-
+        piButton = new JButton("π");
+        piButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        //tauButton = new JButton("τ");
+        //tauButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        phiButton = new JButton("φ");
+        phiButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        eulerButton = new JButton("e");
+        eulerButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        maxDoubleButton = new JButton("Overflow");
+        maxDoubleButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        minDoubleButton = new JButton("Underflow");
+        minDoubleButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        positiveInfinityButton = new JButton("∞");
+        positiveInfinityButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        factorialButton = new JButton("!");
+        factorialButton.setFont(new Font("Arial", Font.PLAIN, 24));
+      
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(5, 5));
+        buttonPanel.setLayout(new GridLayout(7, 5));
         
         buttonPanel.add(helpButton);
         buttonPanel.add(listButton);
@@ -112,6 +143,18 @@ public class CalculatorGUI {
         buttonPanel.add(negativeButton);
         buttonPanel.add(operationButtons[4]); // **
         buttonPanel.add(operationButtons[5]); // -**
+        
+        buttonPanel.add(piButton);
+        buttonPanel.add(phiButton);
+        buttonPanel.add(eulerButton);
+        buttonPanel.add(factorialButton);
+        buttonPanel.add(blankButton2);
+
+        buttonPanel.add(maxDoubleButton);
+        buttonPanel.add(minDoubleButton);
+        buttonPanel.add(positiveInfinityButton);
+        buttonPanel.add(blankButton4);
+        buttonPanel.add(blankButton3);
         
 
         frame.add(buttonPanel, BorderLayout.CENTER);
@@ -174,13 +217,91 @@ public class CalculatorGUI {
             }
         });
         
+        piButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	if (startNewInput) {
+                    inputField.setText(String.valueOf(constants.PI));
+                    startNewInput = false;
+                } else {
+                    inputField.setText(inputField.getText() + constants.PI);
+                }
+            }
+        });
+        
+       /* tauButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	if (startNewInput) {
+                    inputField.setText(String.valueOf(constants.TAU));
+                    startNewInput = false;
+                } else {
+                    inputField.setText(inputField.getText() + constants.TAU);
+                }
+            }
+        }); */
+        
+        phiButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	if (startNewInput) {
+                    inputField.setText(String.valueOf(constants.PHI));
+                    startNewInput = false;
+                } else {
+                    inputField.setText(inputField.getText() + constants.PHI);
+                }
+            }
+        });
+        
+        eulerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	if (startNewInput) {
+                    inputField.setText(String.valueOf(constants.EULER_NUMBER));
+                    startNewInput = false;
+                } else {
+                    inputField.setText(inputField.getText() + constants.EULER_NUMBER);
+                }
+            }
+        });
+        
+        factorialButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    double currentNumber = Double.parseDouble(inputField.getText());
+                    double result = Calculator.factorial(currentNumber);
+                    inputField.setText(String.valueOf(result));
+                    startNewInput = true;
+                } catch (IllegalArgumentException ex) {
+                    inputField.setText(ex.getMessage());
+                }
+            }
+        });
+        
+        maxDoubleButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	inputField.setText(String.valueOf(constants.MAX_DOUBLE_VALUE));
+                startNewInput = false;
+            }
+        });
+        
+        minDoubleButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	inputField.setText(String.valueOf(Constants.MIN_DOUBLE_VALUE));
+                startNewInput = false;
+            }
+        });
+        
+        positiveInfinityButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	inputField.setText(String.valueOf(Constants.POSITIVE_INFINITY));
+                startNewInput = false;
+            }
+        });
+
+        
+        
         setTooltipsWithDelay();
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
         frame.setVisible(true);
-    
-
 
         equalsButton = new JButton("=");
         equalsButton.setFont(new Font("Arial", Font.PLAIN, 24));
@@ -221,9 +342,7 @@ public class CalculatorGUI {
                         num1 = result;
                         operator = "";
                         startNewInput = true;
-                    } catch (IllegalArgumentException ex) {
-                        inputField.setText(ex.getMessage());
-                    } catch (ArithmeticException ex) {
+                    } catch (IllegalArgumentException | ArithmeticException ex) {
                         inputField.setText(ex.getMessage());
                     }
                 }
@@ -287,6 +406,14 @@ public class CalculatorGUI {
         setTooltipWithDelay(negativeButton, "Negative");
         setTooltipWithDelay(operationButtons[4], "Exponent, Power");
         setTooltipWithDelay(operationButtons[5], "Reciprocal");
+        setTooltipWithDelay(piButton, "Pi");
+        //setTooltipWithDelay(tauButton, "Tau");
+        setTooltipWithDelay(phiButton, "Phi, Golden Ratio");
+        setTooltipWithDelay(eulerButton, "Euler's Constant, Interest");
+        setTooltipWithDelay(maxDoubleButton, "Overflow, Largest Value");
+        setTooltipWithDelay(minDoubleButton, "Underflow, Smallest Value");
+        setTooltipWithDelay(positiveInfinityButton, "Infinity");
+        setTooltipWithDelay(factorialButton, "Factorial");
     }
     
     private void setTooltipWithDelay(JButton button, String tooltip) {

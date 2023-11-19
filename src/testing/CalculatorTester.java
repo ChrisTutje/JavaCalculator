@@ -85,4 +85,18 @@ public class CalculatorTester {
     public void testNegative() {
         assertEquals(-2.0, Calculator.negative(2.0), 0.001);
     }
+    
+    @Test
+    public void testFactorial() {
+        double result = Calculator.factorial(3);
+        assertEquals(6, result, 0);
+        
+        assertThrows(IllegalArgumentException.class, () -> {
+            Calculator.factorial(Double.POSITIVE_INFINITY);
+        });
+            
+        assertThrows(ArithmeticException.class, () -> {
+            Calculator.factorial(Double.MAX_VALUE);
+            });
+    }
 }
