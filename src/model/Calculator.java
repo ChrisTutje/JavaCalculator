@@ -86,6 +86,39 @@ public class Calculator {
     public static double negative(double number) {
         return -number;
     }
+    
+    /* public static String comparison(double num1, double num2) {
+        if (num1 == num2) {
+            return "Equal";
+        } else if (num1 > num2) {
+            return "Greater than";
+        } else {
+            return "Less than";
+        }
+    } */
+    
+    public static double factorial(double num) {
+        if (Double.isInfinite(num)) {
+            throw new IllegalArgumentException("Stop it. Get some help :(");
+        }
+
+        if (num < 0) {
+            throw new IllegalArgumentException("Error: Negative factorials are hard :(");
+        }
+        
+        if (num == Double.MAX_VALUE) {
+        	throw new ArithmeticException("Factorial result too large");
+        }
+
+        double result = 1;
+        for (int i = 1; i <= num; i++) {
+            if (result * i > Double.MAX_VALUE) {
+                throw new ArithmeticException("Error: Number too big");
+            }
+            result *= i;
+        }
+        return result;
+    }
 }
 
 
