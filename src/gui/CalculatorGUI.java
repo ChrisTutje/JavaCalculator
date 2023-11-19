@@ -23,6 +23,7 @@ public class CalculatorGUI {
     private JButton[] numberButtons;
     private JButton[] operationButtons;
     private JButton factorialButton;
+    private JButton rootButton;
     private JButton equalsButton;
     private JButton clearButton;
     private JButton decimalButton;
@@ -110,6 +111,8 @@ public class CalculatorGUI {
         positiveInfinityButton.setFont(new Font("Arial", Font.PLAIN, 24));
         factorialButton = new JButton("!");
         factorialButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        rootButton = new JButton("√");
+        rootButton.setFont(new Font("Arial", Font.PLAIN, 24));
       
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(7, 5));
@@ -148,7 +151,7 @@ public class CalculatorGUI {
         buttonPanel.add(phiButton);
         buttonPanel.add(eulerButton);
         buttonPanel.add(factorialButton);
-        buttonPanel.add(blankButton2);
+        buttonPanel.add(rootButton);
 
         buttonPanel.add(maxDoubleButton);
         buttonPanel.add(minDoubleButton);
@@ -294,6 +297,30 @@ public class CalculatorGUI {
                 startNewInput = false;
             }
         });
+        
+
+        
+         rootButton.addActionListener(new ActionListener() {
+            private double rootDegree;
+
+            public void actionPerformed(ActionEvent e) {
+                if (!inputField.getText().isEmpty()) {
+
+                    String degreeInput = JOptionPane.showInputDialog(frame, "Enter the root degree:");
+
+                    if (degreeInput != null && !degreeInput.isEmpty()) {
+                        rootDegree = Double.parseDouble(degreeInput);
+
+                        double currentNumber = Double.parseDouble(inputField.getText());
+                        double result = Calculator.Root(currentNumber, rootDegree);
+                        inputField.setText(String.valueOf(result));
+
+                        startNewInput = true;
+                    }
+                }
+            }
+        }); 
+       
 
         
         
@@ -414,6 +441,7 @@ public class CalculatorGUI {
         setTooltipWithDelay(minDoubleButton, "Underflow, Smallest Value");
         setTooltipWithDelay(positiveInfinityButton, "Infinity");
         setTooltipWithDelay(factorialButton, "Factorial");
+        setTooltipWithDelay(rootButton, "Root");
     }
     
     private void setTooltipWithDelay(JButton button, String tooltip) {

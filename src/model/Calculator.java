@@ -119,6 +119,13 @@ public class Calculator {
         }
         return result;
     }
+    
+    public static double Root(double num, double rootDegree) {
+        if (num < 0 && rootDegree % 2 == 0) {
+            throw new IllegalArgumentException("Error: imaginary numbers are too complex");
+        }
+        return Math.pow(num, 1.0 / rootDegree);
+    }
 }
 
 
