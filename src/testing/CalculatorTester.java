@@ -115,7 +115,20 @@ public class CalculatorTester {
         } catch (IllegalArgumentException e) {
             assertEquals("Error: imaginary numbers are too complex", e.getMessage());
         }
+    }
+    
+    @Test
+    public void testPermutate() {
+        Calculator calculator = new Calculator();
+        double result = calculator.permutate(2);
+        assertEquals(3, result, 0);
         
+        try {
+            Calculator.permutate(-2.0);
+            fail("Expected IllegalArgumentException for negative permutation");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: Negative permutations r 2 hard :(", e.getMessage());
+        }
     }
 }
 

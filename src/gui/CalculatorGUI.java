@@ -6,16 +6,18 @@
 package gui;
 import model.Calculator;
 import model.Constants;
-import gui.ListOperatorGUI;
+//import gui.ListOperatorGUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileReader;
+//import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CalculatorGUI {
     private JFrame frame;
@@ -25,6 +27,7 @@ public class CalculatorGUI {
     private JButton factorialButton;
     private JButton permutateButton;
     private JButton rootButton;
+    private JButton primeFactorizationButton;
     private JButton equalsButton;
     private JButton clearButton;
     private JButton decimalButton;
@@ -114,6 +117,8 @@ public class CalculatorGUI {
         rootButton.setFont(new Font("Arial", Font.PLAIN, 24));
         permutateButton = new JButton("+!");
         permutateButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        primeFactorizationButton = new JButton("pf");
+        primeFactorizationButton.setFont(new Font("Arial", Font.PLAIN, 24));
       
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(7, 5));
@@ -151,16 +156,15 @@ public class CalculatorGUI {
         buttonPanel.add(piButton);
         buttonPanel.add(phiButton);
         buttonPanel.add(eulerButton);
-        buttonPanel.add(factorialButton);
         buttonPanel.add(rootButton);
+        buttonPanel.add(factorialButton);
 
         buttonPanel.add(maxDoubleButton);
         buttonPanel.add(minDoubleButton);
         buttonPanel.add(positiveInfinityButton);
+        buttonPanel.add(primeFactorizationButton);
         buttonPanel.add(permutateButton);
-        buttonPanel.add(blankButton3);
         
-
         frame.add(buttonPanel, BorderLayout.CENTER);
 
         for (JButton button : numberButtons) {
@@ -332,6 +336,24 @@ public class CalculatorGUI {
         	        }
         	    }
         	});
+         
+         primeFactorizationButton.addActionListener(new ActionListener() {
+             public void actionPerformed(ActionEvent e) {
+                 try {
+                     int inputNumber = Integer.parseInt(inputField.getText());
+                     List<Integer> primeFactors = Calculator.primeFactorization(inputNumber);
+                     String result = primeFactors.stream().map(Object::toString).collect(Collectors.joining(", "));
+                     inputField.setText(result);
+                     startNewInput = true;
+                 } catch (NumberFormatException ex) {
+                     inputField.setText("Invalid input for prime factorization.");
+                 } catch (IllegalArgumentException ex) {
+                     inputField.setText(ex.getMessage());
+                 }
+             }
+         });
+         
+         
   
         setTooltipsWithDelay();
         
@@ -461,6 +483,7 @@ public class CalculatorGUI {
         setTooltipWithDelay(factorialButton, "Factorial");
         setTooltipWithDelay(permutateButton, "Permutation");
         setTooltipWithDelay(rootButton, "Root");
+        setTooltipWithDelay(primeFactorizationButton, "Prime Factorization");
     }
     
     private void setTooltipWithDelay(JButton button, String tooltip) {
