@@ -1,1 +1,32 @@
-list help plz :(
+Navigation buttons:
+	[?] help: opens the help menu.
+	[-r*] remove all: deletes every item from the list.
+	[C] clear: removes everything from the input field.
+	[Display] display: show the current list in the input field. 
+	
+digit buttons: 
+	[0-9] arabic numerals: input base-10 integers.
+	[.] decimal: convert the input to a decimal.
+	[(-)] negative: convert the input into a negative. 
+	
+Operation buttons:
+	[[]+] append: add an item to the end of the list.
+	[[]-] pop: remove the item at the end of the list.
+	[Sort] numerical sort: organize the items from lowest to highest numerical value.
+	[Shuffle] shuffle: re-arrange the items in a random order.
+	[μ] mean: calculate the average value of the list.
+	[Med] median: calculate the central value of the list. 
+	[Mode] mode: find the most common item from the list.
+	[σ] standard deviation: calculate the deviation of the mean. Useful for statistics.    
+	[Δ] delta: find the common difference between each item in the list. Works best with the [Sort] button.
+	[∑] summation: add every item of the list together.
+	[-*] difference: subtract every item of the list from eachother. 
+	[∏] product: multiply every item of the list together.
+	[/*] quotient: divide every item of the list together.
+	[Min] minimum: find the smallest value of the list.
+	[Max] maximum: find the largest value of the list.
+	[Range] range: subtracts the minimum from the maximum value.
+	[Len] length: calculate how many items are in the list. 
+	
+
+	

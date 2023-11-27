@@ -389,7 +389,7 @@ public class ListOperatorGUI {
         setTooltipWithDelay(minButton, "Minimim");
         setTooltipWithDelay(maxButton, "Maximum");
         setTooltipWithDelay(rangeButton, "Range");
-        setTooltipWithDelay(lengthButton, "Length");
+        setTooltipWithDelay(lengthButton, "Length, Size");
         setTooltipWithDelay(deltaButton, "Delta");
     }
     
