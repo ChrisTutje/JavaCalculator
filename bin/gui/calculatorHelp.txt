@@ -20,6 +20,7 @@ Operation buttons:
 	[**] power: raise a number to the power of another number.
 	[-**] reciprocal: find the reciprocal of a number.
 	[!] factorial: find the factorial of a number. Work In Progress.
+	[+!] permutate: a non-standard operation that finds the total permutations of a number. 
 	[√] root: find the custom root of a number. Work In Progress.
 	
 Constants:

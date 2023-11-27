@@ -23,6 +23,7 @@ public class CalculatorGUI {
     private JButton[] numberButtons;
     private JButton[] operationButtons;
     private JButton factorialButton;
+    private JButton permutateButton;
     private JButton rootButton;
     private JButton equalsButton;
     private JButton clearButton;
@@ -76,8 +77,6 @@ public class CalculatorGUI {
             button.setFont(new Font("Arial", Font.PLAIN, 24));
         }
         
-        
-
         JButton blankButton = new JButton("");
         JButton blankButton1 = new JButton("");
         JButton blankButton2 = new JButton("");
@@ -113,6 +112,8 @@ public class CalculatorGUI {
         factorialButton.setFont(new Font("Arial", Font.PLAIN, 24));
         rootButton = new JButton("√");
         rootButton.setFont(new Font("Arial", Font.PLAIN, 24));
+        permutateButton = new JButton("+!");
+        permutateButton.setFont(new Font("Arial", Font.PLAIN, 24));
       
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new GridLayout(7, 5));
@@ -156,7 +157,7 @@ public class CalculatorGUI {
         buttonPanel.add(maxDoubleButton);
         buttonPanel.add(minDoubleButton);
         buttonPanel.add(positiveInfinityButton);
-        buttonPanel.add(blankButton4);
+        buttonPanel.add(permutateButton);
         buttonPanel.add(blankButton3);
         
 
@@ -298,8 +299,6 @@ public class CalculatorGUI {
             }
         });
         
-
-        
          rootButton.addActionListener(new ActionListener() {
             private double rootDegree;
 
@@ -320,10 +319,20 @@ public class CalculatorGUI {
                 }
             }
         }); 
-       
-
-        
-        
+         
+         permutateButton.addActionListener(new ActionListener() {
+        	    public void actionPerformed(ActionEvent e) {
+        	        try {
+        	            double currentNumber = Double.parseDouble(inputField.getText());
+        	            double result = Calculator.permutate(currentNumber); // Use Calculator.permutate
+        	            inputField.setText(String.valueOf(result));
+        	            startNewInput = true;
+        	        } catch (IllegalArgumentException ex) {
+        	            inputField.setText(ex.getMessage());
+        	        }
+        	    }
+        	});
+  
         setTooltipsWithDelay();
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -381,7 +390,16 @@ public class CalculatorGUI {
         frame.setVisible(true);
     }
 
-    class NumberButtonListener implements ActionListener {
+    /**
+	 * @param currentNumber
+	 * @return
+	 */
+	protected double permutate(double currentNumber) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	class NumberButtonListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             JButton button = (JButton) e.getSource();
             String buttonText = button.getText();
@@ -441,6 +459,7 @@ public class CalculatorGUI {
         setTooltipWithDelay(minDoubleButton, "Underflow, Smallest Value");
         setTooltipWithDelay(positiveInfinityButton, "Infinity");
         setTooltipWithDelay(factorialButton, "Factorial");
+        setTooltipWithDelay(permutateButton, "Permutation");
         setTooltipWithDelay(rootButton, "Root");
     }
     
