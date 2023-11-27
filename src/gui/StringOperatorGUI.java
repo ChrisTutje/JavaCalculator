@@ -75,7 +75,7 @@ public class StringOperatorGUI {
             }
         });
         
-        concatenateButton = new JButton("\"+\"");
+        concatenateButton = new JButton("||");
         concatenateButton.setFont(new Font("Arial", Font.PLAIN, 24));
         concatenateButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
