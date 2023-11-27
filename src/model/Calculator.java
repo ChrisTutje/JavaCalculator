@@ -132,6 +132,25 @@ public class Calculator {
         }
         return Math.pow(num, 1.0 / rootDegree);
     }
+    
+    public static double permutate(double num) {
+        if (Double.isInfinite(num)) {
+            throw new IllegalArgumentException("Stop it. Get some help :(");
+        }
+
+        if (num < 0) {
+            throw new IllegalArgumentException("Error: Negative permutations r 2 hard :(");
+        }
+
+        double result = 0;
+        for (int i = 1; i <= num; i++) {
+            if (result + i > Double.MAX_VALUE) {
+                throw new ArithmeticException("Error: Result too big");
+            }
+            result += i;
+        }
+        return result;
+    }
 }
 
 
