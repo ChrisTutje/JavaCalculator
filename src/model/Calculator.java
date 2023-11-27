@@ -5,6 +5,9 @@
  */
 package model;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Calculator {
 	public static double add(double... numbers) {
 	    double result = 0;
@@ -150,6 +153,23 @@ public class Calculator {
             result += i;
         }
         return result;
+    }
+    
+    public static List<Integer> primeFactorization(int number) {
+        List<Integer> primeFactors = new ArrayList<>();
+
+        if (number < 2) {
+            throw new IllegalArgumentException("Prime factorization is not defined for numbers less than 2.");
+        }
+
+        for (int i = 2; i <= number; i++) {
+            while (number % i == 0) {
+                primeFactors.add(i);
+                number /= i;
+            }
+        }
+
+        return primeFactors;
     }
 }
 

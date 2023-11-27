@@ -19,9 +19,10 @@ Operation buttons:
 	[%] modular division: find the remainder of a floor division. 
 	[**] power: raise a number to the power of another number.
 	[-**] reciprocal: find the reciprocal of a number.
-	[!] factorial: find the factorial of a number. Work In Progress.
+	[!] factorial: find the factorial of a number. 
 	[+!] permutate: a non-standard operation that finds the total permutations of a number. 
-	[√] root: find the custom root of a number. Work In Progress.
+	[√] root: find the custom root of a number.
+	[pf] prime factorization: find the prime factors of a number. 
 	
 Constants:
 	[π] pi: ratio of a cicle's circumference. 
