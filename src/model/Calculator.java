@@ -17,27 +17,33 @@ public class Calculator {
 	    return result;
 	}
 
-    public static double subtract(double... numbers) {
-        if (numbers.length == 0) {
-            return 0;
-        }
-        double result = numbers[0];
-        for (int i = 1; i < numbers.length; i++) {
-            result -= numbers[i];
-        }
-        return result;
-    }
+	public static double subtract(double... numbers) {
+	    if (numbers.length == 0) {
+	        return 0;
+	    }
+
+	    double result = numbers[0];
+	    for (int i = 1; i < numbers.length; i++) {
+	        if (result == Double.NEGATIVE_INFINITY || result < Double.MIN_VALUE + numbers[i]) {
+	            throw new ArithmeticException("Error: Result exceeds min value");
+	        }
+	        result -= numbers[i];
+	    }
+
+	    return result;
+	}
 
     public static double multiply(double... numbers) {
         double result = 1;
         for (double number : numbers) {
-            if (number != 0 && result > Double.MAX_VALUE / number) {
+            if (result > Double.MAX_VALUE / Math.abs(number)) {
                 throw new ArithmeticException("Error: Result exceeds max value");
             }
             result *= number;
         }
         return result;
     }
+
     
     public static double divide(double... numbers) {
         if (numbers.length == 0) {

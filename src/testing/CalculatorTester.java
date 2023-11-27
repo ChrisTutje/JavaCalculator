@@ -14,12 +14,12 @@ public class CalculatorTester {
     @Test
     public void testAdd() {
         assertEquals(4.0, Calculator.add(2.0, 2.0), 0.001);
-        //try {
-            //Calculator.add(Double.MAX_VALUE, 2.0);
-            //fail("Expected ArithmeticException for exceeding maximum value, but no exception was thrown.");
-        //} catch (ArithmeticException e) {
-            //assertEquals("Error: Result exceeds max value", e.getMessage());
-        //}
+        try {
+            Calculator.add(Double.POSITIVE_INFINITY, 1.0);
+            fail("Expected ArithmeticException for adding infinity, but no exception was thrown.");
+        } catch (ArithmeticException e) {
+            assertEquals("Error: Result exceeds max value", e.getMessage());
+        }
     }
 
     @Test
@@ -30,6 +30,12 @@ public class CalculatorTester {
     @Test
     public void testMultiply() {
         assertEquals(4.0, Calculator.multiply(2.0, 2.0), 0.001);
+        try {
+        Calculator.multiply(Double.MAX_VALUE, 2.0);
+        fail("Expected ArithmeticException for exceeding maximum value, but no exception was thrown.");
+    } catch (ArithmeticException e) {
+        assertEquals("Error: Result exceeds max value", e.getMessage());
+    }
     }
 
     @Test
@@ -99,4 +105,18 @@ public class CalculatorTester {
             Calculator.factorial(Double.MAX_VALUE);
             });
     }
+    @Test
+    public void testRoot() {
+        assertEquals(2.0, Calculator.Root(4.0, 2.0), 0.001);
+        
+        try {
+            Calculator.Root(-1.0, 2.0);
+            fail("Expected IllegalArgumentException for i");
+        } catch (IllegalArgumentException e) {
+            assertEquals("Error: imaginary numbers are too complex", e.getMessage());
+        }
+        
+    }
 }
+
+	
