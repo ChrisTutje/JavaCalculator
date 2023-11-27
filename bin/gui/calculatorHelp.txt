@@ -7,6 +7,8 @@ Navigation buttons:
 	
 digit buttons: 
 	[0-9] arabic numerals: input base-10 integers. 
+	[.] decimal: convert the input to a decimal.
+	[(-)] negative: convert the input into a negative.
 	
 Operation buttons:
 	[+] addition: add two numbers.
