@@ -1,0 +1,9 @@
+Navigation buttons:
+	[?] help: opens the help menu.
+	[C] clear: removes everything from the input field.
+	
+Operation buttons:
+	[||] concatonate:
+	["-"]: substring subtraction: 
+	
+*This part of the calculator is currently non-functional*
