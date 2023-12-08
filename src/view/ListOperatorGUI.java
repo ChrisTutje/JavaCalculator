@@ -378,7 +378,7 @@ public class ListOperatorGUI { //JButtons
         setTooltipWithDelay(clearButton, "Clear");
         setTooltipWithDelay(displayButton, "Display");
         setTooltipWithDelay(appendButton, "Append");
-        setTooltipWithDelay(popButton, "Pop");
+        setTooltipWithDelay(popButton, "Pop, Remove From End");
         setTooltipWithDelay(sortButton, "Numerical Sort");
         setTooltipWithDelay(shuffleButton, "Shuffle");
         setTooltipWithDelay(meanButton, "Mean, Average");
