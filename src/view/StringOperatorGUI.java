@@ -1,3 +1,11 @@
+/**
+ * @author chris - chtutje@dmacc.edu
+ * CIS175 - Fall 2023
+ * Oct 28, 2023
+ * Overview: Creates the GUI for the String Operator window.  
+ * The skeleton is basically functional, but unused for final project.  
+ */
+
 package view;
 
 import model.Calculator;

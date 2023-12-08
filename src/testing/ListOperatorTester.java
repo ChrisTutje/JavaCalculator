@@ -2,6 +2,8 @@
  * @author chris - chtutje@dmacc.edu
  * CIS175 - Fall 2023
  * Nov 11, 2023
+ * Overview: This contains a suite of tests for the ListOperator class.
+ * These are mostly positive tests, and shuffle does not have a test.
  */
 package testing;
 
@@ -52,16 +54,6 @@ public class ListOperatorTester {
         assertEquals("1.0, 2.0, 3.0", listOperator.getListAsString());
     }
 
-   /* @Test
-    public void testShuffle() {
-        listOperator.append(1.0);
-        listOperator.append(2.0);
-        listOperator.append(3.0);
-        listOperator.shuffle();
-        assertTrue(listOperator.getListAsString().contains("1.0, 2.0, 3.0")); 
-    } */
-
-
     @Test
     public void testLength() {
         listOperator.append(1.0);
@@ -69,14 +61,6 @@ public class ListOperatorTester {
         listOperator.append(3.0);
         assertEquals(3, listOperator.getLength());
     }
-
-   /* @Test
-    public void testStandardDeviation() {
-        listOperator.append(1.0);
-        listOperator.append(2.0);
-        listOperator.append(3.0);
-        assertEquals(1.0, listOperator.calculateStandardDeviation(), 0.001);
-    } */
 
     @Test
     public void testDelta() {
@@ -193,8 +177,5 @@ public class ListOperatorTester {
         listOperator.append(3.0);
         assertEquals(2.0, listOperator.getRange(), 0.001);
     }
-
-
-
 }
 

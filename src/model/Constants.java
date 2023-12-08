@@ -2,6 +2,7 @@
  * @author chris - chtutje@dmacc.edu
  * CIS175 - Fall 2023
  * Nov 18, 2023
+ * Overview: This is a list of various constants
  */
 package model;
 

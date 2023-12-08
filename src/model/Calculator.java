@@ -2,6 +2,7 @@
  * @author chris - chtutje@dmacc.edu
  * CIS175 - Fall 2023
  * Oct 28, 2023
+ * Overview: This class contains several methods for arithmetic operations. 
  */
 package model;
 
@@ -95,16 +96,6 @@ public class Calculator {
     public static double negative(double number) {
         return -number;
     }
-    
-    /* public static String comparison(double num1, double num2) {
-        if (num1 == num2) {
-            return "Equal";
-        } else if (num1 > num2) {
-            return "Greater than";
-        } else {
-            return "Less than";
-        }
-    } */
     
     public static double factorial(double num) {
         if (Double.isInfinite(num)) {

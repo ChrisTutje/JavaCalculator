@@ -1,3 +1,10 @@
+/**
+ * @author chris - chtutje@dmacc.edu
+ * CIS175 - Fall 2023
+ * Oct 28, 2023
+ * Overview: This class contains methods for various list methods. 
+ */
+
 package model;
 
 import java.util.ArrayList;

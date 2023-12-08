@@ -2,6 +2,7 @@
  * @author chris - chtutje@dmacc.edu
  * CIS175 - Fall 2023
  * Nov 12, 2023
+ * Overview: This is an unused class for the StringOperator
  */
 package model;
 
