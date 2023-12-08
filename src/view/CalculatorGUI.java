@@ -2,6 +2,10 @@
  * @author chris - chtutje@dmacc.edu
  * CIS175 - Fall 2023
  * Oct 30, 2023
+ * Overview: This class creates the GUI.
+ * It has logic for buttons, input field, grid layout, action listeners, tooltips, file streaming, and main. 
+ * There is some commented-out code for the StringOperator and for the Tau constant.
+ * They are superfluous for the final project, but I want them for my personal use later.
  */
 package view;
 import model.Calculator;
@@ -17,7 +21,7 @@ import java.io.InputStreamReader;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CalculatorGUI {
+public class CalculatorGUI { //this section declares the JButtons
     private JFrame frame;
     private JTextField inputField;
     private JButton[] numberButtons;
@@ -46,7 +50,7 @@ public class CalculatorGUI {
     private String operator = "";
     private boolean startNewInput = true;
 
-    public CalculatorGUI() {
+    public CalculatorGUI() { //this section creates the input field
         frame = new JFrame("Calculator");
         frame.setLayout(new BorderLayout());
 
@@ -57,13 +61,13 @@ public class CalculatorGUI {
 
         frame.add(inputField, BorderLayout.NORTH);
 
-        numberButtons = new JButton[10];
+        numberButtons = new JButton[10]; //this creates the digit buttons 0-9
         for (int i = 0; i < 10; i++) {
             numberButtons[i] = new JButton(String.valueOf(i));
             numberButtons[i].setFont(new Font("Arial", Font.PLAIN, 24));
         }
 
-        operationButtons = new JButton[9];  // array size of operation buttons
+        operationButtons = new JButton[9];  // operation buttons
         operationButtons[0] = new JButton("+");
         operationButtons[1] = new JButton("-");
         operationButtons[2] = new JButton("*");
@@ -78,11 +82,7 @@ public class CalculatorGUI {
             button.setFont(new Font("Arial", Font.PLAIN, 24));
         }
         
-        JButton blankButton = new JButton("");
-        JButton blankButton1 = new JButton("");
-        JButton blankButton2 = new JButton("");
-        JButton blankButton3 = new JButton("");
-        JButton blankButton4 = new JButton("");
+        JButton blankButton = new JButton(""); //the blankbuttons are used when planning the grid layout
         clearButton = new JButton("C");
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
         decimalButton = new JButton(".");
@@ -117,9 +117,9 @@ public class CalculatorGUI {
         permutateButton.setFont(new Font("Arial", Font.PLAIN, 24));
         primeFactorizationButton = new JButton("pf");
         primeFactorizationButton.setFont(new Font("Arial", Font.PLAIN, 24));
-      
+ //=====================================================================================================================================================================     
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(7, 5));
+        buttonPanel.setLayout(new GridLayout(7, 5)); //button layout for the 7x5 grid
         
         buttonPanel.add(helpButton);
         buttonPanel.add(listButton);
@@ -171,8 +171,8 @@ public class CalculatorGUI {
         for (JButton button : operationButtons) {
             button.addActionListener(new OperationButtonListener());
         }
-
-        clearButton.addActionListener(new ActionListener() {
+//======================================================================================================================================================================
+        clearButton.addActionListener(new ActionListener() { //action listeners for the buttons
             public void actionPerformed(ActionEvent e) {
                 inputField.setText("");
                 num1 = 0;
@@ -221,7 +221,7 @@ public class CalculatorGUI {
                 StringOperatorGUI stringOperatorGUI = new StringOperatorGUI();
                 stringOperatorGUI.showStringOperatorWindow();
             }
-        });
+        }); 
         
         piButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -351,8 +351,6 @@ public class CalculatorGUI {
              }
          });
          
-         
-  
         setTooltipsWithDelay();
         
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -444,8 +442,8 @@ public class CalculatorGUI {
             startNewInput = true;
         }
     }
-    
-    private void setTooltipsWithDelay() {
+//======================================================================================================================================================================    
+    private void setTooltipsWithDelay() { //tooltips
         setTooltipWithDelay(numberButtons[0], "Zero");
         setTooltipWithDelay(numberButtons[1], "One");
         setTooltipWithDelay(numberButtons[2], "Two");
@@ -517,7 +515,7 @@ public class CalculatorGUI {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //main
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new CalculatorGUI();

@@ -1,3 +1,11 @@
+/**
+ * @author chris - chtutje@dmacc.edu
+ * CIS175 - Fall 2023
+ * Oct 28, 2023
+ * Overview: Creates the GUI for the List Operator window. 
+ * It contains logic for buttons, input field, action listeners, grid layout, tooltips, filestreaming, and main.  
+ */
+
 package view;
 
 import javax.swing.*;
@@ -12,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.ListOperator;
 
-public class ListOperatorGUI {
+public class ListOperatorGUI { //JButtons
     private JFrame listFrame;
     private JTextField inputField;
     private JButton[] numberButtons;
@@ -48,18 +56,18 @@ public class ListOperatorGUI {
     
     private ListOperator listOperator;
 
-    public ListOperatorGUI() {
+    public ListOperatorGUI() { 
         listFrame = new JFrame("List Operations");
         listFrame.setLayout(new BorderLayout());
 
-        inputField = new JTextField();
+        inputField = new JTextField(); //input field
         inputField.setFont(new Font("Arial", Font.PLAIN, 24));
         inputField.setHorizontalAlignment(SwingConstants.RIGHT);
         inputField.setEditable(false);
 
         listOperator = new ListOperator();
 
-        numberButtons = new JButton[10];
+        numberButtons = new JButton[10]; //digit buttons
         for (int i = 0; i < 10; i++) {
         	numberButtons[i] = new JButton(String.valueOf(i));
         	numberButtons[i].setFont(new Font("Arial", Font.PLAIN, 24));
@@ -72,13 +80,10 @@ public class ListOperatorGUI {
             });
         }
         
-        JButton blankButton = new JButton("");
+        JButton blankButton = new JButton(""); //blankButtons used as placeholder buttons for planning layout
         JButton blankButton1 = new JButton("");
-        JButton blankButton2 = new JButton("");
-        JButton blankButton3 = new JButton("");
-        JButton blankButton4 = new JButton("");
 
-        clearButton = new JButton("C");
+        clearButton = new JButton("C"); //buttons and action listeners
         clearButton.setFont(new Font("Arial", Font.PLAIN, 24));
         clearButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -182,7 +187,7 @@ public class ListOperatorGUI {
             }
         });
         
-        sumButton = new JButton("\u2211");                 
+        sumButton = new JButton("\u2211"); //unicode is fun                 
         sumButton.setFont(new Font("Arial", Font.PLAIN, 24));
         sumButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -297,9 +302,9 @@ public class ListOperatorGUI {
                 JOptionPane.showMessageDialog(listFrame, "Delta: " + deltaResult, "Result", JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        
+//======================================================================================================================================================================        
         JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new GridLayout(7, 5));
+        buttonPanel.setLayout(new GridLayout(7, 5)); //grid layout
         
         buttonPanel.add(helpButton);
         buttonPanel.add(blankButton);
@@ -356,8 +361,8 @@ public class ListOperatorGUI {
     public void showListOperatorWindow() {
         listFrame.setVisible(true);
     }
-    
-    private void setTooltipsWithDelay() {
+//======================================================================================================================================================================    
+    private void setTooltipsWithDelay() { //tooltips
     	setTooltipWithDelay(numberButtons[0], "Zero");
         setTooltipWithDelay(numberButtons[1], "One");
         setTooltipWithDelay(numberButtons[2], "Two");
@@ -404,7 +409,7 @@ public class ListOperatorGUI {
         timer.start();
     }
     
-    private String loadInstructionsFromFile(String fileName) {
+    private String loadInstructionsFromFile(String fileName) { //file streaming
         try {
         	InputStream inputStream = ListOperatorGUI.class.getResourceAsStream(fileName);
             
@@ -426,7 +431,7 @@ public class ListOperatorGUI {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) { //main
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 new ListOperatorGUI();

@@ -2,6 +2,8 @@
  * @author chris - chtutje@dmacc.edu
  * CIS175 - Fall 2023
  * Nov 2, 2023
+ * Overview: This contains a suite of tests for the Calculator Class.
+ * Each method has a positive test, and most have a negative test for exceptions. 
  */
 package testing;
 
